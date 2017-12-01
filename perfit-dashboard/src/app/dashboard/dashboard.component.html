@@ -1,13 +1,65 @@
 <app-header></app-header>
 
+<body>
 
-<p> Welcome to dashboard, your are logged in. Hello {{ user }} </p>
+  <div *ngIf="items?.length >0; else nItems">
+  	<ul *ngFor="let item of items" class="collection">
+  		<li class="collection-item">
+			
+			<h1 class="item-title">{{ item.title }}</h1> 
+			<br><h3><div class="description"> {{ item.description }}</div></h3>
+			<div class="info">
+				<!--<br> <b>Datatype: </b> {{ item.datatype }}-->
+				<br> <b>Postedby: </b> {{ item.adminposted }}
+				<!--<br> <b>File: </b> {{ item.file }} -->
+				<br> <b>Permissions: </b> {{ item.permissions }}
+				<br> <b>Posted on: </b> {{ item.time }}
+				<br> <b>Post id: </b> {{ item.id }}
+				<div class="buttons">
+					<button  class="button" (click)="editItem($event, item)" >Edit</button>
+					<button  class="button"	(click)="clearState()"	>Hide</button>
+				</div>
+			</div>
+			<div *ngIf="editState && itemToEdit.id == item.id" >
+				<form (ngSubmit)="updateItem(item)"	>
+					<div class="editthis">
+				        <b>Title:</b> 
+				        <input type="text" placeholder="edit title" [(ngModel)]="item.title" name="title"><br>			  
+				    </div> 	
+				    <div class="editthis">
+				      <b>Descripton:</b>
+				      	<textarea class="description" type="text" placeholder="Add Description" [(ngModel)]="item.description" name="description"></textarea>		
+				    </div>  
+				    <div class="editthis">
+       					<b>Permissions:</b>
+					       <select type="text" placeholder="Add Datatype" [(ngModel)]="item.permissions" name="permissions">
+       						<option selected="selected" >Everyone</option>
+      						<option>Dentists/Doctors only</option>
+       					   </select>
+       				</div>
 
 
 
 
+				      	<br>
+			        	<div class="buttons">
+						<button type="submit" value="Update Item" class="">Update Post</button>
+			        	<button (click)="deleteItem($event,item)"  class="">Delete Post</button>
+			        	</div>
+			        	
+				</form>
+			</div>
 
+		</li>
 
+  	</ul>
 
+  </div>
+</body>
 
+<ng-template #noItems>
+	<hr>
+	<h5>There are no items to list</h5>
+
+</ng-template>
 

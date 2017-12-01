@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { CookieService } from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-header',
@@ -6,9 +7,10 @@ import { Component, OnInit} from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  user = ""; 
 
-  constructor() { 
-     
+  constructor(private cookieService:CookieService) { 
+		this.user = this.cookieService.get('username');
   }
 
 

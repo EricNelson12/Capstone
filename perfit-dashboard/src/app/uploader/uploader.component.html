@@ -1,36 +1,61 @@
 <app-header></app-header>
 
-
+ 
+<body>
 <div class="container">
-  <h1 class="center"><span class="badge badge-secondary">Upload to the Perfit Dental app</span></h1>
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">Title</span>
-      <input type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-<br>
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon2">Datatype</span>
-    <select name="datatype" class="form-control" aria-label="Username" aria-describedby="basic-addon2">
-      <option value="">PDF</option>
-      <option value="">Image</option>
-      <option value="">3D Image </option>
-      <option value=""> Other</option>
-    </select>
-  </div>
-<br>
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon3">Who can view the data</span>
-    <select name="datatype" class="form-control" aria-label="Username" aria-describedby="basic-addon3">
-      <option value="">Everyone</option>
-      <option value="">Dentist/Tech only</option>
-    </select>
-  </div>
-<br>
+  <div class="">
+    <h1 class=""> Create a new post</h1> 
+    
+    <form (ngSubmit) ="onSubmit()" class="">
 
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon4">Upload File</span>
-    <input type="file" name="fileToUpload" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1"><br><br>
-    <input type="submit" value="Upload" class="form-control"><br/><br>
-  </div>
+      <div class="">
+        <label>Title</label>
+        <textarea type="text" placeholder="Add title" [(ngModel)]="item.title" name="title"></textarea>
+      </div>
+      
+      <div class="">
+        <label>Description</label>
+        <textarea class="description" type="text" placeholder="Add Description" [(ngModel)]="item.description" name="description"></textarea>
+      </div>
 
+      <div class="">
+       <label>Permissions</label>
+       <select type="text" placeholder="Add Datatype" [(ngModel)]="item.permissions" name="permissions">
+       <option selected="selected" >Everyone</option>
+       <option>Dentists/Doctors only</option>
+       </select>
+       </div>
+      
+       <!-- file type -->
+      <!--
+       <div class="">
+       <label>Datatype</label>
+       <select type="text" placeholder="Add Datatype" [(ngModel)]="item.datatype"  name="datatype">
+       <option selected="selected" >None</option>
+       <option>PDF</option>
+       <option>Image - png</option>
+       <option>Image - jpg</option>
+       </select>
+       </div>
+      -->
+      
+       <!-- upload file -->
+       <!--
+        <label>Attachment</label>
+        <div class="">
+        <input type="file" accept="image/*" [(ngModel)]="item.file" id="file" >
+        </div>
+      -->
+
+         
+      <input type="submit" class="button">
+      <div id="message">{{msg}}</div>
+      <div id="message2">{{msg2}}</div>
+
+    </form>
+
+  </div>
 </div>
+
+</body>
+

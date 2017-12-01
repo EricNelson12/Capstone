@@ -1,6 +1,39 @@
-header {
-	text-align: center;
-	padding: 20px 0;
-	font-size: 30px;
-	border-bottom: 2px solid #eee;
+.title-header{
+	padding-left: 5em;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	height: 7em;
+
 }
+.outer-header{
+	background-color: rgba(0,0,0,0.78);
+	padding-bottom: 1em;
+}
+
+p{
+	color: #eee;
+	padding-left: 2em;
+}
+
+.title-header{
+}
+
+.img1{
+	float: left;
+	
+}
+
+.menu ul li {
+    display:inline-block;
+    float: left;
+    padding-left: 1em;
+}
+
+.link{
+	color: #eee;
+}
+
+.link:hover{
+	color: rgb(155, 252, 27);
+}
+

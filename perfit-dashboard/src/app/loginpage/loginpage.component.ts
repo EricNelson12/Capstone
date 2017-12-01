@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'angular2-cookie/core';
-import { AuthService } from '../auth.service';
-
-
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-loginpage',
@@ -11,8 +9,6 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./loginpage.component.css']
 })
 export class LoginpageComponent implements OnInit {
-
- 
 
     private admin2;
     private password2;

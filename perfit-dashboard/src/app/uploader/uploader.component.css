@@ -1,0 +1,65 @@
+
+
+
+body{
+    background-color: #eee;
+    color: grey;
+    height: 45em;
+
+}
+
+h1{
+    padding-top: 2em;
+
+}
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+textarea[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    height: 4em;
+    min-height: 4em;
+}
+input[type=submit] {
+    margin-top: 5em;
+}
+
+select {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+        width: 100%;
+
+}
+
+.button{
+    height: 3em;
+    width: 5em; 
+    background-color: rgba(0,0,0,0.78);
+    color: #eee;
+}
+
+#message{
+	color: red;
+	padding-top: .25em;
+	text-align: center;
+	font-size: 2em;
+	font-style: bold;
+}
+
+#message2{
+    color: grey;
+    padding-top: .25em;
+    text-align: center;
+    font-size: 2em;
+    font-style: bold;
+
+}
+

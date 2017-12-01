@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import {UserService} from './user.service';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-root',

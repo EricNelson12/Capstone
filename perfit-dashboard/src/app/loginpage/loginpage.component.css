@@ -2,12 +2,17 @@ div.center {
   text-align: center;
 }
 
-header {
-	text-align: center;
-	font-size: 30px;
+body{
+	background-color: rgba(0,0,0,0.78);
+	width: 100%;
+	height: 60%;
 }
+
+label{
+	color: #eee;
+}
+
 .cont{
-	background-color: white;
 	margin-top: 10em;
 	margin-bottom:20em;
 }
@@ -15,3 +20,34 @@ header {
 .error{
 	color: red;
 }
+
+
+input{
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.title-header{
+	padding-left: 5em;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	height: 7em;
+
+}
+
+
+.img1{
+	float: left;
+}
+
+
+.button{
+    height: 3em;
+    width: 6em; 
+    background-color: #eee;
+
+    color: grey;
+}
+

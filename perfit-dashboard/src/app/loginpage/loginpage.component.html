@@ -1,25 +1,35 @@
-<div class="jumbotron">
-  <header class="jumbotron">Perfit Dental</header>
-</div>
+ 
+<body>
+  <div class="outer-header">
+    <div class="title-header ">
 
-<div class="cont">
-  <div class="center">
+  <img class="img1  stnd default-logo dark-version" alt="Perfit Dental Solutions" src="http://blog.perfitdental.com/wp-content/uploads/2015/06/PerFit-Small.png.pagespeed.ce.rN4gmwpOqB.png" srcset="http://blog.perfitdental.com/wp-content/uploads/2015/06/PerFit-Small.png 1x, http://blog.perfitdental.com/wp-content/uploads/2015/06/PerFit-Large.png 2x" pagespeed_url_hash="3905334400" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" style="height: 66px;">
 
-    <form (submit)="loginUser($event)">
-      <img src="home.png">
-      <div class="input">
-        <label>Username</label><br/><br/>
-        <input type="text"><br/><br/>
-      </div>
-      <div class="input">
-        <label>Password</label><br/><br/>
-        <input type="password"><br/><br/>
-      </div>
-      <div ng-if="errorMessage2" class="error">{{ errorMessage2 }}</div><br>
-      <div ng-if="errorMessage" class="error">{{ errorMessage }}</div><br>
-      <div class="input">
-        <input type="submit" value="login">
-      </div>
-    </form>
+    </div>
   </div>
-</div>
+
+
+  <div class="cont">
+    <div class="center">
+
+      <form (submit)="loginUser($event)">
+        <img src="home.png">
+        <div class="input">
+          <label>Username</label><br/>
+          <input type="text"><br/><br/>
+        </div>
+        <div class="input">
+          <label>Password</label><br/>
+          <input type="password"><br/><br/>
+        </div>
+        <div ng-if="errorMessage2" class="error">{{ errorMessage2 }}</div><br>
+        <div ng-if="errorMessage" class="error">{{ errorMessage }}</div><br>
+        <div class="input">
+          <input type="submit" class="button" value="login">
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+</body>
