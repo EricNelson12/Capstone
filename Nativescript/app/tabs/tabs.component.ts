@@ -1,23 +1,19 @@
-import {Component, Input, ChangeDetectionStrategy } from "@angular/core";
-import { Page } from "ui/page"; // to hide action bar
+import {Component,OnInit,NgZone } from "@angular/core";
 import * as listViewModule from "tns-core-modules/ui/list-view";
 import * as ImageModule from "tns-core-modules/ui/image";
 import { Image } from "tns-core-modules/ui/image";
-import { OnInit } from '@angular/core';
 import { Info} from './info';
 
 
+//firebase
+import { Observable } from "rxjs/Observable";
+import { firestore } from "nativescript-plugin-firebase";
+const firebase = require("nativescript-plugin-firebase/app");
+const firebaseWebApi = require("nativescript-plugin-firebase/app");
+const MapBox = require("nativescript-mapbox");
 
-
-export class news{
-  constructor(
-    public id: number,
-    public Topic : String, 
-    public author: string, 
-    public pic: string, 
-    public prev: String,
-    public body: String ){}
-}
+//items
+import { Item } from '../items/item';
 
 
 @Component({
@@ -26,47 +22,73 @@ export class news{
   styleUrls:["./tabs/tabs.component.css"]
 })
 export class tabsComponent implements OnInit{
-  News: news[];
-  constructor(){
-    this.News= [
-      {id: 0,
-      Topic: 'Random News about Nothing',
-      author: 'James Lock', 
-      pic: "https://www.w3schools.com" +"/images/w3schools_green.jpg", 
-      prev: "This is the preview to nothing ...",
-      body: "This si the preview to nothing and i have nothing else to say" },
-      {id: 1,
-      Topic: 'Who is Dr. Blankface',
-      author: 'Dr. Real Face', 
-      pic: "https://www.w3schools.com" +"/w3css/img_avatar3.png", 
-      prev: "This is the preview to who Dr. no face is dont read into it too much okay ...",
-      body: "This si the preview to nothing and i have nothing else to say" },
-      {id: 2,
-      Topic: 'Random News about Everything',
-      author: 'Yank Mike Rotch', 
-      pic: "https://www.w3schools.com"+"/images/w3schools_green.jpg", 
-      prev: "This is the preview to everything ...",
-      body: "This si the preview to nothing and i have nothing else to say" },
-      {id: 3,
-        Topic: 'THE END IS NIGH!!!',
-        author: 'Reverend Donations', 
-        pic: "https://www.cleverfiles.com/howto/wp-content/uploads/2016/08/mini.jpg", 
-        prev: "This is the to everything as we know it",
-        body: "This si the preview to nothing and i have nothing else to say" },
-        {id: 4,
-          Topic: 'Sayians Hate Him!!!',
-          author: 'Gangstalicious', 
-          pic: "~/images/LilBill.png", 
-          prev: "Learn how this teenager found out the secret to unlock sayian..",
-          body: "This si the preview to nothing and i have nothing else to say" }
-    ]
-  }
-  selectedNews: news;
-    ngOnInit() {
+
+ //item from collection 
+  item: Item = {
+      title: '',
+      description: '',
+      adminposted: '',
+      permissions: '',
+      time: '',
+      datatype: '',
+      url: '',
+      name: '',
     }
   
-    onSelect(item: news): void {
-      this.selectedNews = item;
-    }
+
+  items: Item[];
+
+
+  constructor(private zone: NgZone) {
+    // AngularFireModule.initializeApp({});
+
   }
+
+  // initialize the firebase connection
+  // get data from firestore
+  ngOnInit(): void {
+    firebase.initializeApp({
+      persist: false
+    }).then(() => {
+      console.log("Firebase initialized");
+    });
+
+    this.firestoreGet();
+
+  }
+
+
+ //function to get firebase data
+ public firestoreGet(): void {
+    const collectionRef: firestore.CollectionReference = firebase.firestore().collection("items");
+    collectionRef.get()
+        .then((querySnapshot: firestore.QuerySnapshot) => {
+          querySnapshot.forEach(doc => {
+
+            console.log("Items:  "+`${doc.id} => ${JSON.stringify(doc.data())}`);
+            // since there's a reference stored here, we can use that to retrieve its data            
+            
+
+            //this.items.push(
+            //   new Item("Bob", "", "Developer", "100", "github.com"); 
+            //)            //set data to variables
+            
+            this.item.title = doc.data().title;
+            this.item.description = doc.data().description;
+            this.item.datatype = doc.data().datatype;
+            this.item.permissions = doc.data().permissions;
+            this.item.name = doc.data().name;
+            this.item.adminposted = doc.data().adminposted;
+            this.item.time = doc.data().time;
+            this.item.url = doc.data().url;
+            console.log("Updating Data");
+
+          });
+        })
+        .catch(err => console.log());
+          //console.log("This is the second log: "+"Get failed, error" + err));         
+
+  }
+  
+}
 

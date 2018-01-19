@@ -1,65 +1,112 @@
-<TabView  tabBackgroundColor="#414141" selectedTabTextColor="#00FF00">
-    <StackLayout *tabItem="{title: 'News'}" id = "news">
-
-        <StackLayout id= "woman">
-        <Label text = "Smile Of the Future" id= "womantext"></Label>
-        <Image src= "~/images/big-woman.png"></Image>
+<GridLayout tkMainContent>
+ <TabView #tabview tabBackgroundColor="#414141" selectedTabTextColor="#00FF00" >
+        
+        <!-- News Tab -->
+        <StackLayout *tabItem="{title: 'News'}">
+			<StackLayout id= "woman">
+				<Label text = "Smile Of the Future" id= "womantext"></Label>
+				<Image src= "~/images/big-woman.png"></Image>
+			</StackLayout>
+			<StackLayout>
+				<Image src= "~/images/boxes1.png"></Image>
+				<Image src= "~/images/boxes2.png"></Image>
+			</StackLayout>
         </StackLayout>
+        
+
+        <!-- Info Tab -->
+        <StackLayout *tabItem="{title: 'Info'}">
+			<ScrollView>
+				<StackLayout class="page">
+				<Button text="Update" (tap)="firestoreGet()" class="h1"></Button>
+
+				<Label text="{{ item.title }}" class="h3"></Label>
+				<Label text="{{ item.description }}" class="h6"></Label>
+				<Label text="{{ item.adminposted }}" class="h6"></Label>
+				<Label text="{{ item.time }}" class="h6"></Label>
+				<Label text="{{ item.datatype }}" class="h6"></Label>
+
+				<Image src= "{{ item.url }}"></Image>
+
+				<!--
+				<div *ngIf="item.datatype == 'Video'; ">
+				<video class="fileimage2" width="500" height="500" controls>
+				<source src="{{ item.url }}" type="video/mp4">
+				</video>			  
+				</div>
+
+				<div class="pdf" *ngIf="item.datatype == 'PDF'; ">
+				<a class="pdf" href="{{ item.url }}">{{ item.name }}</a>
+				</div>
+				-->
+
+				<ListView [items]="myCities$ | async" height="200" *ngIf="myCities$">
+				<template let-item="item">
+				<StackLayout>
+				<Label style="color: red" text='{{item.name}}'></Label>
+				</StackLayout>
+				</template>
+				</ListView>
+
+				</StackLayout>
+			</ScrollView>
+		</StackLayout>
+
+
+        <!-- Providers Tab -->
+        <StackLayout *tabItem="{title: 'Providers'}">
+			<Gradient height="100%" direction="to bottom" colors="#444, #000" [class.p-20]="isIOS">
+				<ContentView [@flyInOut]="'in'" height="100%" width="100%" borderRadius="20">
+					<Mapbox
+						accessToken="sk.eyJ1IjoiZWRkeXZlcmJydWdnZW4iLCJhIjoia1JpRW82NCJ9.OgnvpsKzB3GJhzyofQNUBw"
+						mapStyle="traffic_day"
+						latitude="49.939334"
+						longitude="-119.398501"						
+						zoomLevel="10"
+						delay="450"
+						showUserLocation="true"
+						hideCompass="false"
+						disableZoom="false"
+						disableRotation="false"
+						disableScroll="false"
+						disableTilt="false"
+						(mapReady)="onMapReady($event)">
+						</Mapbox>
+				</ContentView>
+			</Gradient>
+			<FAB
+			[@from-right]="'in'"
+			(tap)="fabTapped()"
+			icon="res://ic_add_white"
+			rippleColor="#f1f1f1"
+			class="fab">
+			</FAB>
+		</StackLayout>
+  </TabView>
+</GridLayout>
+<!--
+    <ScrollView>
+  	<StackLayout class="page">
+
+    <Button text="Update" (tap)="firestoreGet()" class="h1"></Button>
+
+
+    <Label text="{{ item.title }}" class="h2"></Label>
+    <Label text="{{ item.description }}" class="h2"></Label>
+    <Label text="{{ item.adminposted }}" class="h2"></Label>
+    <Label text="{{ item.time }}" class="h2"></Label>
+
+
+
+    <ListView [items]="myCities$ | async" height="200" *ngIf="myCities$">
+      <template let-item="item">
         <StackLayout>
-        <a href ="">
-            <Image src= "~/images/boxes1.png"></Image>
-        </a>
-        <a href ="">
-            <Image src= "~/images/boxes2.png"></Image>
-        </a>
+          <Label style="color: red" text='{{item.name}}'></Label>
         </StackLayout>
-    
-    </StackLayout>
+      </template>
+    </ListView>
 
-
-    <StackLayout *tabItem="{title: 'Info'}">   
-                <ListView [items]= "News" class = "list-group" [class.selected]="item === selectedInfo"(tap)="onSelect(item)">
-                        <ng-template let-item="item" >
-                                <StackLayout orientation="horizontal">
-                                 <Image width="200px" height="300px" [src]="item.pic" id = "image"></Image>
-                            <StackLayout class="list-group-item" >
-                              <Label [text]="item.Topic" class="list-group-item-heading" id = "topic"></Label>
-                              <Label [text]="'Created by: ' + item.author"  class="list-group-item-text" ></Label>
-                                <Label  [text]="item.prev"  class="list-group-item-text" id = "prev"></Label>
-                                </StackLayout>
-                                </StackLayout>
-                            </ng-template>
-                        </ListView>
-                
-                        <app-news-detail [item]="selectedInfo"></app-news-detail>
-    </StackLayout>
-    <GridLayout *tabItem="{title: 'Providers'}">
-            <Gradient height="100%" direction="to bottom" colors="#444, #000" [class.p-20]="isIOS">
-                    <ContentView [@flyInOut]="'in'" height="100%" width="100%" borderRadius="20">
-                      <Mapbox
-                          accessToken="sk.eyJ1IjoiZWRkeXZlcmJydWdnZW4iLCJhIjoia1JpRW82NCJ9.OgnvpsKzB3GJhzyofQNUBw"
-                          mapStyle="traffic_day"
-                          latitude="42.624189"
-                          longitude="23.372106"
-                          zoomLevel="8"
-                          delay="450"
-                          showUserLocation="true"
-                          hideCompass="false"
-                          disableZoom="false"
-                          disableRotation="false"
-                          disableScroll="false"
-                          disableTilt="false"
-                          (mapReady)="onMapReady($event)">
-                      </Mapbox>
-                    </ContentView>
-                  </Gradient>
-                  <FAB
-                      [@from-right]="'in'"
-                      (tap)="fabTapped()"
-                      icon="res://ic_add_white"
-                      rippleColor="#f1f1f1"
-                      class="fab">
-                </FAB>
-    </GridLayout>
-</TabView>
+  </StackLayout>
+</ScrollView>
+-->
 

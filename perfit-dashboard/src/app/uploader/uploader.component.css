@@ -24,6 +24,16 @@ textarea[type=text] {
     min-height: 4em;
 }
 
+/* Progress bar */
+.box1{
+    background-color: red;
+}
+
+progress[value] {
+  padding-top: 1em;  
+  width: 500px;
+  height: 20px;
+}
 
 
 input[type=submit] {
