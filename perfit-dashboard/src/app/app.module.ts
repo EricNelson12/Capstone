@@ -77,9 +77,11 @@ const appRoutes:Routes = [
     component: MainuploadComponent
   },
   {
-    path: 'pushmessage',
-    canActivate: [AuthguardGuard],
-    component: PushmessageComponent
+
+   path: 'pushmessage',
+   canActivate: [AuthguardGuard],
+   component: PushmessageComponent
+
   },
   {
     path: 'logout',
