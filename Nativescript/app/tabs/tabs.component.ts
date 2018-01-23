@@ -3,7 +3,9 @@ import * as listViewModule from "tns-core-modules/ui/list-view";
 import * as ImageModule from "tns-core-modules/ui/image";
 import { Image } from "tns-core-modules/ui/image";
 import { Info} from './info';
-
+import { registerElement } from "nativescript-angular/element-registry";
+registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
+ 
 
 //firebase
 import { Observable } from "rxjs/Observable";
@@ -15,6 +17,11 @@ const MapBox = require("nativescript-mapbox");
 //items
 import { Item } from '../items/item';
 
+export interface City {
+  country: string;
+  name: string;
+  population: number;
+}
 
 @Component({
   selector: "tabs",
@@ -36,12 +43,16 @@ export class tabsComponent implements OnInit{
     }
   
 
+  public myCity$: Observable<City>;
+  public myCities$: Observable<Array<City>>;
+  private city: City;
+  private cities: Array<City> = [];
+
   items: Item[];
 
 
   constructor(private zone: NgZone) {
     // AngularFireModule.initializeApp({});
-
   }
 
   // initialize the firebase connection
@@ -53,9 +64,32 @@ export class tabsComponent implements OnInit{
       console.log("Firebase initialized");
     });
 
-    this.firestoreGet();
+     this.firestoreCollectionObservable();
 
   }
+
+
+
+  refreshList(args) {
+         var pullRefresh = args.object;
+         setTimeout(function () {
+            pullRefresh.refreshing = false;
+         }, 1000);
+    }
+
+  firestoreCollectionObservable(): void {
+    this.myCities$ = Observable.create(subscriber => {
+      const colRef: firestore.CollectionReference = firebase.firestore().collection("items");
+      colRef.onSnapshot((snapshot: firestore.QuerySnapshot) => {
+        this.zone.run(() => {
+          this.cities = [];
+          snapshot.forEach(docSnap => this.cities.push(<City>docSnap.data()));
+          subscriber.next(this.cities);
+        });
+      });
+    });
+  }
+
 
 
  //function to get firebase data
@@ -65,13 +99,8 @@ export class tabsComponent implements OnInit{
         .then((querySnapshot: firestore.QuerySnapshot) => {
           querySnapshot.forEach(doc => {
 
-            console.log("Items:  "+`${doc.id} => ${JSON.stringify(doc.data())}`);
-            // since there's a reference stored here, we can use that to retrieve its data            
-            
-
-            //this.items.push(
-            //   new Item("Bob", "", "Developer", "100", "github.com"); 
-            //)            //set data to variables
+            //console.log("Items:  "+`${doc.id} => ${JSON.stringify(doc.data())}`);
+           
             
             this.item.title = doc.data().title;
             this.item.description = doc.data().description;
@@ -87,8 +116,6 @@ export class tabsComponent implements OnInit{
         })
         .catch(err => console.log());
           //console.log("This is the second log: "+"Get failed, error" + err));         
-
   }
   
 }
-

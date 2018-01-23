@@ -1,6 +1,5 @@
 button {
     font-size: 15;
-    horizontal-align: center;
 }
 
 .drawerContentText {
@@ -38,3 +37,52 @@ button {
 .sideLightGrayLabel {
     background-color: lightgray;
 }
+
+
+.collection{
+    background-color: black;
+    color: green;
+    width: 100%;
+}
+
+
+.list-item{
+    padding-top: 1em;
+    text-align: center;
+    vertical-align: center;
+    margin-top: 15;
+}
+
+.title{
+    color: white;
+    font-size: 20;
+}
+
+.timeposted{
+    color: white;
+    font-size: 10;
+    text-align: left;
+}
+
+.img{
+    height: 100;
+    margin: 15;
+}
+
+.btn{
+    
+    order: 1;
+    length: 10;
+}
+
+.flex{
+
+}
+
+
+
+
+
+
+
+

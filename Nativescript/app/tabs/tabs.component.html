@@ -1,6 +1,7 @@
+
 <GridLayout tkMainContent>
  <TabView #tabview tabBackgroundColor="#414141" selectedTabTextColor="#00FF00" >
-        
+     
         <!-- News Tab -->
         <StackLayout *tabItem="{title: 'News'}">
 			<StackLayout id= "woman">
@@ -15,18 +16,32 @@
         
 
         <!-- Info Tab -->
-        <StackLayout *tabItem="{title: 'Info'}">
-			<ScrollView>
-				<StackLayout class="page">
-				<Button text="Update" (tap)="firestoreGet()" class="h1"></Button>
+        <FlexboxLayout *tabItem="{title: 'Info'}" class="flex">
+			<!--	<PullToRefresh (refresh)="refreshList($event)"> -->
 
-				<Label text="{{ item.title }}" class="h3"></Label>
-				<Label text="{{ item.description }}" class="h6"></Label>
-				<Label text="{{ item.adminposted }}" class="h6"></Label>
-				<Label text="{{ item.time }}" class="h6"></Label>
-				<Label text="{{ item.datatype }}" class="h6"></Label>
 
-				<Image src= "{{ item.url }}"></Image>
+				<StackLayout>
+					<Button text="Update"  dock="top" (tap)="firestoreCollectionObservable()" class="btn"></Button>
+				</StackLayout>
+
+				
+
+				<ListView [items]="myCities$ | async" height="200" *ngIf="myCities$" class="list-group">
+				<template let-item="item">
+				<StackLayout class="list-item" >
+			
+				<Label text="{{item.title}}" class="title"></Label>
+				<Image src="{{item.url}}" class=""></Image> 
+
+				<Label text="{{item.description}}" class="desc"></Label>
+				<Label text="{{item.time}}" class="timeposted"></Label>
+				
+
+				</StackLayout>
+
+
+				</template>
+				</ListView>
 
 				<!--
 				<div *ngIf="item.datatype == 'Video'; ">
@@ -39,21 +54,13 @@
 				<a class="pdf" href="{{ item.url }}">{{ item.name }}</a>
 				</div>
 				-->
+		<!--	</PullToRefresh> -->
 
-				<ListView [items]="myCities$ | async" height="200" *ngIf="myCities$">
-				<template let-item="item">
-				<StackLayout>
-				<Label style="color: red" text='{{item.name}}'></Label>
-				</StackLayout>
-				</template>
-				</ListView>
-
-				</StackLayout>
-			</ScrollView>
-		</StackLayout>
+		</FlexboxLayout>
 
 
         <!-- Providers Tab -->
+   
         <StackLayout *tabItem="{title: 'Providers'}">
 			<Gradient height="100%" direction="to bottom" colors="#444, #000" [class.p-20]="isIOS">
 				<ContentView [@flyInOut]="'in'" height="100%" width="100%" borderRadius="20">
@@ -84,29 +91,10 @@
 		</StackLayout>
   </TabView>
 </GridLayout>
-<!--
-    <ScrollView>
-  	<StackLayout class="page">
-
-    <Button text="Update" (tap)="firestoreGet()" class="h1"></Button>
-
-
-    <Label text="{{ item.title }}" class="h2"></Label>
-    <Label text="{{ item.description }}" class="h2"></Label>
-    <Label text="{{ item.adminposted }}" class="h2"></Label>
-    <Label text="{{ item.time }}" class="h2"></Label>
 
 
 
-    <ListView [items]="myCities$ | async" height="200" *ngIf="myCities$">
-      <template let-item="item">
-        <StackLayout>
-          <Label style="color: red" text='{{item.name}}'></Label>
-        </StackLayout>
-      </template>
-    </ListView>
+    
 
-  </StackLayout>
-</ScrollView>
--->
+
 
