@@ -3,13 +3,12 @@
   "license": "SEE LICENSE IN <your-license-filename>",
   "readme": "NativeScript Application",
   "repository": "<fill-your-repository-here>",
-  "nativescript": {      
-    "id": "perfit-dental",
-    "id": "org.nativescript.PerfitDental",
-    "tns-ios": {      
+  "nativescript": {
+    "id": "org.klar.ravan",
+    "tns-ios": {
       "version": "3.3.0"
     },
-    "tns-android": {      
+    "tns-android": {
       "version": "3.2.0"
     }
   },

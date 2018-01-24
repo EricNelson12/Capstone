@@ -1,6 +1,5 @@
 button {
     font-size: 15;
-    horizontal-align: center;
 }
 
 .drawerContentText {
@@ -38,3 +37,55 @@ button {
 .sideLightGrayLabel {
     background-color: lightgray;
 }
+
+
+.collection{
+    background-color: black;
+    color: green;
+    width: 100%;
+}
+
+
+.list-item{
+    padding-top: 1em;
+    text-align: center;
+    vertical-align: center;
+    margin-top: 22;
+}
+
+.title{
+    color: white;
+    font-size: 20;
+}
+
+.timeposted{
+    color: white;
+    font-size: 10;
+    text-align: left;
+}
+
+.img{
+    height: 100;
+    margin: 15;
+}
+
+.btn{
+    background-color: #414141;
+    color: #00FF00;
+}
+
+.flex{
+ background-color: #414141;
+}
+
+.items{
+    margin-top: 10;
+    margin-bottom: 10;
+}
+
+
+
+
+
+
+
