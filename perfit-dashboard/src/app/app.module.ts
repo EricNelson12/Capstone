@@ -25,7 +25,7 @@ import { ItemService } from './services/item.service';
 
 
 import { MarkdownService } from './services/markdown.service';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService, CookieOptions } from 'angular2-cookie/core';
 import { FileuploadService } from './services/fileupload.service';
 //guard
 import { AuthguardGuard } from './authguard.guard';
@@ -113,7 +113,7 @@ const appRoutes:Routes = [
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthguardGuard,CookieService, AuthService,ItemService,MarkdownService, FileuploadService],
+  providers: [{ provide: CookieOptions, useValue: {} },AuthguardGuard,CookieService, AuthService,ItemService,MarkdownService, FileuploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

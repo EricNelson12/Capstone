@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService, CookieOptions } from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-header',
