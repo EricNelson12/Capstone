@@ -50,7 +50,7 @@ button {
     padding-top: 1em;
     text-align: center;
     vertical-align: center;
-    margin-top: 15;
+    margin-top: 22;
 }
 
 .title{
@@ -70,15 +70,18 @@ button {
 }
 
 .btn{
-    
-    order: 1;
-    length: 10;
+    background-color: #414141;
+    color: #00FF00;
 }
 
 .flex{
-
+ background-color: #414141;
 }
 
+.items{
+    margin-top: 10;
+    margin-bottom: 10;
+}
 
 
 

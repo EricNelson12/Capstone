@@ -16,28 +16,17 @@
         
 
         <!-- Info Tab -->
-        <FlexboxLayout *tabItem="{title: 'Info'}" class="flex">
-			<!--	<PullToRefresh (refresh)="refreshList($event)"> -->
+        <StackLayout *tabItem="{title: 'Info'}" class="flex">
 
-
-				<StackLayout>
-					<Button text="Update"  dock="top" (tap)="firestoreCollectionObservable()" class="btn"></Button>
-				</StackLayout>
-
+			<Button text="Update" (tap)="firestoreCollectionObservable()" class="btn"></Button>
 				
-
-				<ListView [items]="myCities$ | async" height="200" *ngIf="myCities$" class="list-group">
-				<template let-item="item">
-				<StackLayout class="list-item" >
-			
-				<Label text="{{item.title}}" class="title"></Label>
-				<Image src="{{item.url}}" class=""></Image> 
-
-				<Label text="{{item.description}}" class="desc"></Label>
-				<Label text="{{item.time}}" class="timeposted"></Label>
-				
-
-				</StackLayout>
+				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
+				<template let-item="item" class="items">
+					<FlexLayout class="list-item" >
+						<Label text="{{item.title}}" class="title"></Label>
+						<Image src="{{item.url}}" class=""></Image> 
+						<Label text="{{item.time}}" class="timeposted"></Label>
+					</FlexLayout>
 
 
 				</template>
@@ -49,15 +38,12 @@
 				<source src="{{ item.url }}" type="video/mp4">
 				</video>			  
 				</div>
-
 				<div class="pdf" *ngIf="item.datatype == 'PDF'; ">
 				<a class="pdf" href="{{ item.url }}">{{ item.name }}</a>
 				</div>
 				-->
-		<!--	</PullToRefresh> -->
 
-		</FlexboxLayout>
-
+		</StackLayout>
 
         <!-- Providers Tab -->
    
