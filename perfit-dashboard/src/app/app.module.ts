@@ -42,6 +42,7 @@ import { MainuploadComponent } from './mainupload/mainupload.component';
 
 // Http client (used for sending POST request for push ~Eric)
 import {HttpClientModule} from '@angular/common/http';
+import { DownloadpageComponent } from './downloadpage/downloadpage.component';
 
 
 
@@ -84,6 +85,13 @@ const appRoutes:Routes = [
 
   },
   {
+
+    path: 'downloadpage',
+    canActivate: [AuthguardGuard],
+    component: DownloadpageComponent
+ 
+   },
+  {
     path: 'logout',
     component: LogoutComponent
   }
@@ -100,7 +108,7 @@ const appRoutes:Routes = [
     UploaderComponent,
     LogoutComponent,
     MainuploadComponent,    
-    PushmessageComponent,    
+    PushmessageComponent, DownloadpageComponent,    
 
   ],
   imports: [
