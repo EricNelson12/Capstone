@@ -6,7 +6,7 @@ import * as firebase from 'firebase';
 
 import { Item } from '../models/item';
 import { Upload } from '../models/upload';
-import { CookieService } from 'angular2-cookie/core';
+import { CookieService, CookieOptions } from 'angular2-cookie/core';
 
 
 @Injectable()

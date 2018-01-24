@@ -9,6 +9,7 @@ import { HttpClient,HttpHeaders} from '@angular/common/http';
 })
 export class PushmessageComponent implements OnInit {
 
+  onChange: any;
   title:"";
   msg:"";
   results:"";
