@@ -3,29 +3,52 @@
  <TabView #tabview tabBackgroundColor="#414141" selectedTabTextColor="#00FF00" >
      
         <!-- News Tab -->
-        <StackLayout *tabItem="{title: 'News'}">
-			<StackLayout id= "woman">
-				<Label text = "Smile Of the Future" id= "womantext"></Label>
-				<Image src= "~/images/big-woman.png"></Image>
-			</StackLayout>
-			<StackLayout>
-				<Image src= "~/images/boxes1.png"></Image>
-				<Image src= "~/images/boxes2.png"></Image>
-			</StackLayout>
+        <StackLayout *tabItem="{title: 'News'}" class="flex">
+			<Button text="Dentists" (tap)="firestoreWhereDentists()" class="btn"></Button>
+
+        	    <FlexboxLayout >
+
+				
+				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group" >
+				<template let-item="item" class="items">
+					<FlexLayout class="list-item">
+
+					    <Label text="{{item.datatype}}" class="title"></Label>
+
+					    <Label text="{{item.title}}" class="title"></Label>
+						<Image src="{{item.url}}" class=""></Image>  
+						<Label text="{{item.name}}" class="header1"></Label>
+
+					    <Label text="{{item.time}}" class="timeposted"></Label>
+					</FlexLayout>
+
+
+				</template>
+				</ListView>
+
+			</FlexboxLayout>
         </StackLayout>
         
 
         <!-- Info Tab -->
-        <StackLayout *tabItem="{title: 'Info'}" class="flex">
+        <!-- <StackLayout *tabItem="{title: 'Info'}" class="flex">-->
+        	    <StackLayout *tabItem="{title: 'Info'}" class="flex">
+					<Button text="Everyone" (tap)="firestoreWhereEveryone()" class="btn"></Button>
 
-			<Button text="Update" (tap)="firestoreCollectionObservable()" class="btn"></Button>
+        	       <FlexboxLayout >
+
 				
-				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
+				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group" >
 				<template let-item="item" class="items">
-					<FlexLayout class="list-item" >
-						<Label text="{{item.title}}" class="title"></Label>
-						<Image src="{{item.url}}" class=""></Image> 
-						<Label text="{{item.time}}" class="timeposted"></Label>
+					<FlexLayout class="list-item">
+
+					    <Label text="{{item.datatype}}" class="title"></Label>
+
+					    <Label text="{{item.title}}" class="title"></Label>
+						<Image src="{{item.url}}" class=""></Image>  
+						<Label text="{{item.name}}" class="header1"></Label>
+
+					    <Label text="{{item.time}}" class="timeposted"></Label>
 					</FlexLayout>
 
 
@@ -42,7 +65,7 @@
 				<a class="pdf" href="{{ item.url }}">{{ item.name }}</a>
 				</div>
 				-->
-
+			</FlexboxLayout>
 		</StackLayout>
 
         <!-- Providers Tab -->

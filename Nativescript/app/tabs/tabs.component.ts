@@ -4,8 +4,10 @@ import * as ImageModule from "tns-core-modules/ui/image";
 import { Image } from "tns-core-modules/ui/image";
 import { Info} from './info';
 import { registerElement } from "nativescript-angular/element-registry";
-registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
  
+ //
+
+
 
 //firebase
 import { Observable } from "rxjs/Observable";
@@ -37,8 +39,11 @@ export interface Item{
 })
 export class tabsComponent implements OnInit{
 
- //item from collection 
+  //google maps stuff
+ 
 
+
+  //item from collection 
   public myItem$: Observable<Item>;
   public myItems$: Observable<Array<Item>>;
   private item: Item;
@@ -58,7 +63,7 @@ export class tabsComponent implements OnInit{
       console.log("Firebase initialized");
     });
 
-     this.firestoreCollectionObservable();
+     //this.firestoreCollectionObservable();
 
   }
 
@@ -75,6 +80,51 @@ export class tabsComponent implements OnInit{
       });
     });
   }
+
+  public firestoreWhereEveryone(): void {
+    this.myItems$ = Observable.create(subscriber => {
+     const query: firestore.Query = firebase.firestore().collection("items")
+        .where("permissions", "==", "Everyone");
+    query
+        .get()
+        .then((querySnapshot: firestore.QuerySnapshot) => {
+          querySnapshot.forEach(doc => {
+
+            this.items = [];
+            querySnapshot.forEach(docSnap => this.items.push(<Item>docSnap.data()));
+            subscriber.next(this.items);
+
+            console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
+           });
+    });
+  });
+}
+  
+public firestoreWhereDentists(): void {
+    this.myItems$ = Observable.create(subscriber => {
+     const query: firestore.Query = firebase.firestore().collection("items")
+        .where("permissions", "==", "Dentists");
+    query
+        .get()
+        .then((querySnapshot: firestore.QuerySnapshot) => {
+          querySnapshot.forEach(doc => {
+
+            this.items = [];
+            querySnapshot.forEach(docSnap => this.items.push(<Item>docSnap.data()));
+            subscriber.next(this.items);
+
+            console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
+           });
+    });
+  });
+}
+
+
+
+
+
+
+
 
 
   

@@ -10,9 +10,17 @@ button {
 
 .drawerContentButton {
     margin: 10;
-    horizontal-align: left;
-    background-color:rgb(182, 253, 1);
-    color:lightslategray;
+    color: rgb(182, 253, 1);
+    border-radius: 5;
+    border-width: 1;
+    border-color: rgb(66, 65, 65);
+    font-size: 28;
+    float: left;
+}
+
+
+.title1{
+    font-size: 26;
 }
 
 .sideStackLayout {
@@ -33,3 +41,21 @@ button {
     background-color: gray;
     color:black;
 }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
