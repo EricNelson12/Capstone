@@ -50,7 +50,8 @@ export const firebaseConfig = {
       authDomain: "perfitdental-7951d.firebaseapp.com",
       databaseURL: "https://perfitdental-7951d.firebaseio.com",
       projectId: "perfitdental-7951d",
-      storageBucket: "perfitdental-7951d.appspot.com",
+      //storageBucket: "perfitdental-7951d.appspot.com",
+      storageBucket: "capstone-b5c94.appspot.com",
       messagingSenderId: "539232777666"
 }
 

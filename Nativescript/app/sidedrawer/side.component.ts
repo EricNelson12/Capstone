@@ -66,10 +66,8 @@ export class SideComponent implements AfterViewInit, OnInit {
         let profSwitch = <Switch>args.object;        
         if(profSwitch.checked){
             this.isProf = true;
-            this.firebase.subscribeToTopic("prof");
         }else{
             this.isProf = false;
-            this.firebase.unsubscribeFromTopic("prof");
         }
         console.log("Professional switch on: "+profSwitch.checked);
     }

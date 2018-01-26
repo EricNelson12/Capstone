@@ -103,7 +103,7 @@ export class tabsComponent implements OnInit{
 public firestoreWhereDentists(): void {
     this.myItems$ = Observable.create(subscriber => {
      const query: firestore.Query = firebase.firestore().collection("items")
-        .where("permissions", "==", "Dentists");
+        .where("permissions", "==", "Dentists/Doctors only");
     query
         .get()
         .then((querySnapshot: firestore.QuerySnapshot) => {
