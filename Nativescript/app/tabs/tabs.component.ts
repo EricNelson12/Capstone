@@ -4,8 +4,8 @@ import * as ImageModule from "tns-core-modules/ui/image";
 import { Image } from "tns-core-modules/ui/image";
 import { Info} from './info';
 import { registerElement } from "nativescript-angular/element-registry";
-registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
- 
+import {ActivatedRoute} from "@angular/router";
+
 
 //firebase
 import { Observable } from "rxjs/Observable";
@@ -37,16 +37,24 @@ export interface Item{
 })
 export class tabsComponent implements OnInit{
 
- //item from collection 
 
+  //item from collection 
   public myItem$: Observable<Item>;
   public myItems$: Observable<Array<Item>>;
   private item: Item;
   private items: Array<Item> = [];
 
 
-  constructor(private zone: NgZone) {
-    // AngularFireModule.initializeApp({});
+  public query: string;
+
+  constructor(private zone: NgZone, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+            this.query = params["query"];
+        });
+  }
+
+  show(){
+    alert(this.query);
   }
 
   // initialize the firebase connection
@@ -57,9 +65,7 @@ export class tabsComponent implements OnInit{
     }).then(() => {
       console.log("Firebase initialized");
     });
-
-     this.firestoreCollectionObservable();
-
+     //this.firestoreCollectionObservable();
   }
 
 
@@ -76,6 +82,46 @@ export class tabsComponent implements OnInit{
     });
   }
 
+  public firestoreWhereEveryone(): void {
+    this.myItems$ = Observable.create(subscriber => {
+     const query: firestore.Query = firebase.firestore().collection("items")
+        .where("permissions", "==", this.query);
+    query
+        .get()
+        .then((querySnapshot: firestore.QuerySnapshot) => {
+          querySnapshot.forEach(doc => {
 
+            this.items = [];
+            querySnapshot.forEach(docSnap => this.items.push(<Item>docSnap.data()));
+            subscriber.next(this.items);
+
+            console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
+           });
+    });
+  });
+}
   
+public firestoreWhereDentists(): void {
+    this.myItems$ = Observable.create(subscriber => {
+     const query: firestore.Query = firebase.firestore().collection("items")
+        .where("permissions", "==", this.query);
+    query
+        .get()
+        .then((querySnapshot: firestore.QuerySnapshot) => {
+          querySnapshot.forEach(doc => {
+
+            this.items = [];
+            querySnapshot.forEach(docSnap => this.items.push(<Item>docSnap.data()));
+            subscriber.next(this.items);
+
+            console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
+           });
+    });
+  });
+}
+
+
+
+
+
 }

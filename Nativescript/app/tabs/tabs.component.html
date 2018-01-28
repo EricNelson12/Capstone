@@ -1,36 +1,49 @@
 
 <GridLayout tkMainContent>
- <TabView #tabview tabBackgroundColor="#414141" selectedTabTextColor="#00FF00" >
+ <TabView #tabview tabBackgroundColor="#414141" selectedTabTextColor="rgb(182, 253, 1)" >
      
         <!-- News Tab -->
-        <StackLayout *tabItem="{title: 'News'}">
-			<StackLayout id= "woman">
-				<Label text = "Smile Of the Future" id= "womantext"></Label>
-				<Image src= "~/images/big-woman.png"></Image>
-			</StackLayout>
-			<StackLayout>
-				<Image src= "~/images/boxes1.png"></Image>
-				<Image src= "~/images/boxes2.png"></Image>
-			</StackLayout>
-        </StackLayout>
-        
+        <StackLayout *tabItem="{title: 'News'}" class="flex">
+			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>
+
+			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
+				<ng-template let-item="item" class="items">
+					<StackLayout class="list-item">
+						<GridLayout *ngIf="item.datatype === 'Image'">
+						<Image src="{{item.url}}" class=""></Image> 
+						</GridLayout> 
+						<StackLayout>
+						<Label text="{{item.name}}" class="header1"></Label>
+						<Label text="{{item.time}}" class="timeposted"></Label>
+						<Label text="{{item.title}}" class="title"></Label>
+						</StackLayout>
+
+					</StackLayout>
+				</ng-template>
+			</ListView>
+		</StackLayout>
 
         <!-- Info Tab -->
-        <StackLayout *tabItem="{title: 'Info'}" class="flex">
+        <!-- <StackLayout *tabItem="{title: 'Info'}" class="flex">-->
+	<StackLayout *tabItem="{title: 'News'}" class="flex">
+			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>
 
-			<Button text="Update" (tap)="firestoreCollectionObservable()" class="btn"></Button>
-				
-				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
-				<template let-item="item" class="items">
-					<FlexLayout class="list-item" >
-						<Label text="{{item.title}}" class="title"></Label>
+			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
+				<ng-template let-item="item" class="items">
+					<StackLayout class="list-item">
+						<GridLayout *ngIf="item.datatype === 'Image'">
 						<Image src="{{item.url}}" class=""></Image> 
+						</GridLayout> 
+						<StackLayout>
+						<Label text="{{item.name}}" class="header1"></Label>
 						<Label text="{{item.time}}" class="timeposted"></Label>
-					</FlexLayout>
+						<Label text="{{item.title}}" class="title"></Label>
+						</StackLayout>
 
-
-				</template>
-				</ListView>
+					</StackLayout>
+				</ng-template>
+			</ListView>
+		</StackLayout>
 
 				<!--
 				<div *ngIf="item.datatype == 'Video'; ">
@@ -42,8 +55,7 @@
 				<a class="pdf" href="{{ item.url }}">{{ item.name }}</a>
 				</div>
 				-->
-
-		</StackLayout>
+		
 
         <!-- Providers Tab -->
    
