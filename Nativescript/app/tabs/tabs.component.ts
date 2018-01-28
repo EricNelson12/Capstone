@@ -4,9 +4,7 @@ import * as ImageModule from "tns-core-modules/ui/image";
 import { Image } from "tns-core-modules/ui/image";
 import { Info} from './info';
 import { registerElement } from "nativescript-angular/element-registry";
- 
- //
-
+import {ActivatedRoute} from "@angular/router";
 
 
 //firebase
@@ -39,9 +37,6 @@ export interface Item{
 })
 export class tabsComponent implements OnInit{
 
-  //google maps stuff
- 
-
 
   //item from collection 
   public myItem$: Observable<Item>;
@@ -50,8 +45,16 @@ export class tabsComponent implements OnInit{
   private items: Array<Item> = [];
 
 
-  constructor(private zone: NgZone) {
-    // AngularFireModule.initializeApp({});
+  public query: string;
+
+  constructor(private zone: NgZone, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+            this.query = params["query"];
+        });
+  }
+
+  show(){
+    alert(this.query);
   }
 
   // initialize the firebase connection
@@ -62,9 +65,7 @@ export class tabsComponent implements OnInit{
     }).then(() => {
       console.log("Firebase initialized");
     });
-
      //this.firestoreCollectionObservable();
-
   }
 
 
@@ -84,7 +85,7 @@ export class tabsComponent implements OnInit{
   public firestoreWhereEveryone(): void {
     this.myItems$ = Observable.create(subscriber => {
      const query: firestore.Query = firebase.firestore().collection("items")
-        .where("permissions", "==", "Everyone");
+        .where("permissions", "==", this.query);
     query
         .get()
         .then((querySnapshot: firestore.QuerySnapshot) => {
@@ -103,7 +104,7 @@ export class tabsComponent implements OnInit{
 public firestoreWhereDentists(): void {
     this.myItems$ = Observable.create(subscriber => {
      const query: firestore.Query = firebase.firestore().collection("items")
-        .where("permissions", "==", "Dentists/Doctors only");
+        .where("permissions", "==", this.query);
     query
         .get()
         .then((querySnapshot: firestore.QuerySnapshot) => {
@@ -123,9 +124,4 @@ public firestoreWhereDentists(): void {
 
 
 
-
-
-
-
-  
 }

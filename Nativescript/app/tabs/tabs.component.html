@@ -4,40 +4,46 @@
      
         <!-- News Tab -->
         <StackLayout *tabItem="{title: 'News'}" class="flex">
-			<Button text="Dentists" (tap)="firestoreWhereDentists()" class="btn"></Button>
+			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>
 
-
-		<ScrollView orientation="vertical">
 			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
 				<ng-template let-item="item" class="items">
 					<StackLayout class="list-item">
-						<Label text="{{item.datatype}}" class="title"></Label>
-						<Label text="{{item.title}}" class="title"></Label>
-						<Image src="{{item.url}}" class=""></Image>  
+						<GridLayout *ngIf="item.datatype === 'Image'">
+						<Image src="{{item.url}}" class=""></Image> 
+						</GridLayout> 
+						<StackLayout>
 						<Label text="{{item.name}}" class="header1"></Label>
 						<Label text="{{item.time}}" class="timeposted"></Label>
+						<Label text="{{item.title}}" class="title"></Label>
+						</StackLayout>
+
 					</StackLayout>
 				</ng-template>
 			</ListView>
-		</ScrollView>
 		</StackLayout>
 
         <!-- Info Tab -->
         <!-- <StackLayout *tabItem="{title: 'Info'}" class="flex">-->
-        <StackLayout *tabItem="{title: 'Info'}" class="flex">
-			<Button text="Everyone" (tap)="firestoreWhereEveryone()" class="btn"></Button>
-        	<GridLayout>
-				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group" >
-					<template let-item="item" class="items">
+	<StackLayout *tabItem="{title: 'News'}" class="flex">
+			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>
+
+			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
+				<ng-template let-item="item" class="items">
 					<StackLayout class="list-item">
-						<Label text="{{item.datatype}}" class="title"></Label>
-						<Label text="{{item.title}}" class="title"></Label>
-						<Image src="{{item.url}}" class=""></Image>  
+						<GridLayout *ngIf="item.datatype === 'Image'">
+						<Image src="{{item.url}}" class=""></Image> 
+						</GridLayout> 
+						<StackLayout>
 						<Label text="{{item.name}}" class="header1"></Label>
 						<Label text="{{item.time}}" class="timeposted"></Label>
+						<Label text="{{item.title}}" class="title"></Label>
+						</StackLayout>
+
 					</StackLayout>
-				</template>
-				</ListView>
+				</ng-template>
+			</ListView>
+		</StackLayout>
 
 				<!--
 				<div *ngIf="item.datatype == 'Video'; ">
@@ -49,8 +55,7 @@
 				<a class="pdf" href="{{ item.url }}">{{ item.name }}</a>
 				</div>
 				-->
-			</GridLayout>
-		</StackLayout>
+		
 
         <!-- Providers Tab -->
    
