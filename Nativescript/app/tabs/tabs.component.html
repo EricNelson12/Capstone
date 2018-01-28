@@ -19,7 +19,7 @@
         <StackLayout *tabItem="{title: 'Info'}" class="flex">
 
 			<Button text="Update" (tap)="firestoreCollectionObservable()" class="btn"></Button>
-				
+			
 				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
 				<template let-item="item" class="items">
 					<FlexLayout class="list-item" >
@@ -46,8 +46,10 @@
 		</StackLayout>
 
         <!-- Providers Tab -->
-   
+  
         <StackLayout *tabItem="{title: 'Providers'}">
+				<StackLayout background="#414141"><Button class="btn btn-primary btn-active" text="Find Your Location" (tap)="startWatchingLocation()"></Button>
+				</StackLayout>
 				<MapView #mapView [latitude]="latitude" [longitude]="longitude"
 				[zoom]="zoom" [bearing]="bearing"
 				[tilt]="tilt" i-padding="50,50,50,50" [padding]="padding" (mapReady)="onMapReady($event)"
@@ -55,7 +57,7 @@
 				(markerEndDragging)="onMarkerEvent($event)" (markerDrag)="onMarkerEvent($event)"
 				(markerInfoWindowTapped)="onMarkerEvent($event)" (coordinateTapped)="onCoordinateTapped($event)"
    (cameraChanged)="onCameraChanged($event)"></MapView>
-			
+
 		</StackLayout>
   </TabView>
 </GridLayout>
