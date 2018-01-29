@@ -25,3 +25,6 @@ android {
 dependencies {
   compile 'com.android.support:multidex:1.0.0'
 }
+project.ext {
+    googlePlayServicesVersion = "11.8.0"
+}
