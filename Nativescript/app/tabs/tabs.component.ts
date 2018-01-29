@@ -29,7 +29,6 @@ export interface Item{
 }
 
 
-
 @Component({
   selector: "tabs",
   templateUrl: "./tabs/tabs.component.html",
@@ -95,7 +94,7 @@ export class tabsComponent implements OnInit{
             querySnapshot.forEach(docSnap => this.items.push(<Item>docSnap.data()));
             subscriber.next(this.items);
 
-            console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
+            //console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
            });
     });
   });
@@ -113,8 +112,7 @@ public firestoreWhereDentists(): void {
             this.items = [];
             querySnapshot.forEach(docSnap => this.items.push(<Item>docSnap.data()));
             subscriber.next(this.items);
-
-            console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
+            //console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
            });
     });
   });
