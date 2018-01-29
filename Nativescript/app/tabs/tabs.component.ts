@@ -5,12 +5,17 @@ import { Image } from "tns-core-modules/ui/image";
 import { ImageSource } from "image-source";
 import { Info} from './info';
 import { registerElement } from "nativescript-angular/element-registry";
+<<<<<<< HEAD
+import {ActivatedRoute} from "@angular/router";
+
+=======
 registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 import {ElementRef, ViewChild} from '@angular/core';
 import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
 import * as Geolocation from "nativescript-geolocation";
 // Important - must register MapView plugin in order to use in Angular templates
 registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
+>>>>>>> master
 
 //firebase
 import { Observable } from "rxjs/Observable";
@@ -34,7 +39,6 @@ export interface Item{
 }
 
 
-
 @Component({
   selector: "tabs",
   templateUrl: "./tabs/tabs.component.html",
@@ -42,16 +46,24 @@ export interface Item{
 })
 export class tabsComponent implements OnInit {
 
- //item from collection 
 
+  //item from collection 
   public myItem$: Observable<Item>;
   public myItems$: Observable<Array<Item>>;
   private item: Item;
   private items: Array<Item> = [];
 
 
-  constructor(private zone: NgZone) {
-    // AngularFireModule.initializeApp({});
+  public query: string;
+
+  constructor(private zone: NgZone, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+            this.query = params["query"];
+        });
+  }
+
+  show(){
+    alert(this.query);
   }
 
 
@@ -177,9 +189,7 @@ onCameraChanged(args) {
     }).then(() => {
       console.log("Firebase initialized");
     });
-
-     this.firestoreCollectionObservable();
-
+     //this.firestoreCollectionObservable();
   }
 
 
@@ -196,6 +206,45 @@ onCameraChanged(args) {
     });
   }
 
+  public firestoreWhereEveryone(): void {
+    this.myItems$ = Observable.create(subscriber => {
+     const query: firestore.Query = firebase.firestore().collection("items")
+        .where("permissions", "==", this.query);
+    query
+        .get()
+        .then((querySnapshot: firestore.QuerySnapshot) => {
+          querySnapshot.forEach(doc => {
 
+            this.items = [];
+            querySnapshot.forEach(docSnap => this.items.push(<Item>docSnap.data()));
+            subscriber.next(this.items);
+
+            //console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
+           });
+    });
+  });
+}
   
+public firestoreWhereDentists(): void {
+    this.myItems$ = Observable.create(subscriber => {
+     const query: firestore.Query = firebase.firestore().collection("items")
+        .where("permissions", "==", this.query);
+    query
+        .get()
+        .then((querySnapshot: firestore.QuerySnapshot) => {
+          querySnapshot.forEach(doc => {
+
+            this.items = [];
+            querySnapshot.forEach(docSnap => this.items.push(<Item>docSnap.data()));
+            subscriber.next(this.items);
+            //console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
+           });
+    });
+  });
+}
+
+
+
+
+
 }

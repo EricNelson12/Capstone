@@ -6,6 +6,7 @@ import { Observable } from "data/observable";
 import { RadSideDrawerComponent, SideDrawerType } from "nativescript-pro-ui/sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
 import { Switch } from "ui/switch";
+import {Router, NavigationExtras} from "@angular/router";
 
 
 @Component({
@@ -20,7 +21,7 @@ export class SideComponent implements AfterViewInit, OnInit {
     private _mainContentText: string;
     public isProf: boolean = false;
 
-    constructor(private _changeDetectionRef: ChangeDetectorRef) {
+    constructor(private _changeDetectionRef: ChangeDetectorRef, private router: Router) {
     }
 
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
@@ -31,7 +32,8 @@ export class SideComponent implements AfterViewInit, OnInit {
         this._changeDetectionRef.detectChanges();
     }
 
-    onSearchLayoutLoaded(event) { //Prevents softkeyboard from opening automatically
+    onSearchLayoutLoaded(event) { 
+    //Prevents softkeyboard from opening automatically
         if (event.object.android) {
             event.object.android.setFocusableInTouchMode(true);
         }
@@ -44,7 +46,45 @@ export class SideComponent implements AfterViewInit, OnInit {
     }
 
     ngOnInit() {
+        this.Everyone();
     }
+
+
+    Everyone(){
+        let navigationExtras: NavigationExtras = {
+            queryParams: {
+                "query": "Everyone",
+            }
+        };
+        this.router.navigate(["tabs"], navigationExtras);
+    }
+
+    DentistsOnly(){
+        let navigationExtras: NavigationExtras = {
+            queryParams: {
+                "query": "Dentists/Doctors only",
+            }
+        };
+        this.router.navigate(["tabs"], navigationExtras);
+    }
+
+
+    professionalSwitch(args){
+        let profSwitch = <Switch>args.object;        
+        if(profSwitch.checked){
+            this.isProf = true;
+            this.DentistsOnly();
+            alert("Dentists");
+
+        }else{
+            this.isProf = false;
+            this.Everyone();
+            alert("Everyone");
+        }
+        console.log("Professional switch on: "+profSwitch.checked);
+    }
+
+
 
     notificationSwitch(args){
         let pushSwitch = <Switch>args.object;
@@ -62,17 +102,6 @@ export class SideComponent implements AfterViewInit, OnInit {
         console.log("Notifications switch on: "+pushSwitch.checked);
     }
 
-    professionalSwitch(args){
-        let profSwitch = <Switch>args.object;        
-        if(profSwitch.checked){
-            this.isProf = true;
-            this.firebase.subscribeToTopic("prof");
-        }else{
-            this.isProf = false;
-            this.firebase.unsubscribeFromTopic("prof");
-        }
-        console.log("Professional switch on: "+profSwitch.checked);
-    }
 
     get mainContentText() {
         return this._mainContentText;
