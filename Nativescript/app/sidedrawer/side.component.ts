@@ -32,7 +32,8 @@ export class SideComponent implements AfterViewInit, OnInit {
         this._changeDetectionRef.detectChanges();
     }
 
-    onSearchLayoutLoaded(event) { //Prevents softkeyboard from opening automatically
+    onSearchLayoutLoaded(event) { 
+    //Prevents softkeyboard from opening automatically
         if (event.object.android) {
             event.object.android.setFocusableInTouchMode(true);
         }
