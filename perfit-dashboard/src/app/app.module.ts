@@ -25,7 +25,7 @@ import { ItemService } from './services/item.service';
 
 
 import { MarkdownService } from './services/markdown.service';
-import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CookieService, CookieOptions } from 'angular2-cookie/core';
 import { FileuploadService } from './services/fileupload.service';
 //guard
 import { AuthguardGuard } from './authguard.guard';
@@ -42,6 +42,7 @@ import { MainuploadComponent } from './mainupload/mainupload.component';
 
 // Http client (used for sending POST request for push ~Eric)
 import {HttpClientModule} from '@angular/common/http';
+import { DownloadpageComponent } from './downloadpage/downloadpage.component';
 
 
 
@@ -85,6 +86,13 @@ const appRoutes:Routes = [
 
   },
   {
+
+    path: 'downloadpage',
+    canActivate: [AuthguardGuard],
+    component: DownloadpageComponent
+ 
+   },
+  {
     path: 'logout',
     component: LogoutComponent
   }
@@ -101,7 +109,7 @@ const appRoutes:Routes = [
     UploaderComponent,
     LogoutComponent,
     MainuploadComponent,    
-    PushmessageComponent,    
+    PushmessageComponent, DownloadpageComponent,    
 
   ],
   imports: [
@@ -114,7 +122,7 @@ const appRoutes:Routes = [
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthguardGuard,CookieService, AuthService,ItemService,MarkdownService, FileuploadService],
+  providers: [{ provide: CookieOptions, useValue: {} },AuthguardGuard,CookieService, AuthService,ItemService,MarkdownService, FileuploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
