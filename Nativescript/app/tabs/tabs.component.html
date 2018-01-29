@@ -28,28 +28,20 @@
 	<StackLayout *tabItem="{title: 'News'}" class="flex">
 			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>
 
-<<<<<<< HEAD
-			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
-				<ng-template let-item="item" class="items">
-					<StackLayout class="list-item">
-						<GridLayout *ngIf="item.datatype === 'Image'">
-=======
 			<Button text="Update" (tap)="firestoreCollectionObservable()" class="btn"></Button>
 			
 				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
-				<template let-item="item" class="items">
+				<ng-template let-item="item" class="items">
 					<FlexLayout class="list-item" >
 						<Label text="{{item.title}}" class="title"></Label>
->>>>>>> master
 						<Image src="{{item.url}}" class=""></Image> 
-						</GridLayout> 
+						
 						<StackLayout>
 						<Label text="{{item.name}}" class="header1"></Label>
 						<Label text="{{item.time}}" class="timeposted"></Label>
 						<Label text="{{item.title}}" class="title"></Label>
 						</StackLayout>
-
-					</StackLayout>
+					</FlexLayout>
 				</ng-template>
 			</ListView>
 		</StackLayout>

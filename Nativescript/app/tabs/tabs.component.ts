@@ -5,17 +5,13 @@ import { Image } from "tns-core-modules/ui/image";
 import { ImageSource } from "image-source";
 import { Info} from './info';
 import { registerElement } from "nativescript-angular/element-registry";
-<<<<<<< HEAD
-import {ActivatedRoute} from "@angular/router";
-
-=======
 registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 import {ElementRef, ViewChild} from '@angular/core';
 import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
+import {ActivatedRoute} from "@angular/router";
 import * as Geolocation from "nativescript-geolocation";
 // Important - must register MapView plugin in order to use in Angular templates
 registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
->>>>>>> master
 
 //firebase
 import { Observable } from "rxjs/Observable";
