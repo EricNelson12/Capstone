@@ -28,10 +28,19 @@
 	<StackLayout *tabItem="{title: 'News'}" class="flex">
 			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>
 
+<<<<<<< HEAD
 			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
 				<ng-template let-item="item" class="items">
 					<StackLayout class="list-item">
 						<GridLayout *ngIf="item.datatype === 'Image'">
+=======
+			<Button text="Update" (tap)="firestoreCollectionObservable()" class="btn"></Button>
+			
+				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
+				<template let-item="item" class="items">
+					<FlexLayout class="list-item" >
+						<Label text="{{item.title}}" class="title"></Label>
+>>>>>>> master
 						<Image src="{{item.url}}" class=""></Image> 
 						</GridLayout> 
 						<StackLayout>
@@ -58,34 +67,18 @@
 		
 
         <!-- Providers Tab -->
-   
+  
         <StackLayout *tabItem="{title: 'Providers'}">
-			<Gradient height="100%" direction="to bottom" colors="#444, #000" [class.p-20]="isIOS">
-				<ContentView [@flyInOut]="'in'" height="100%" width="100%" borderRadius="20">
-					<Mapbox
-						accessToken="sk.eyJ1IjoiZWRkeXZlcmJydWdnZW4iLCJhIjoia1JpRW82NCJ9.OgnvpsKzB3GJhzyofQNUBw"
-						mapStyle="traffic_day"
-						latitude="49.939334"
-						longitude="-119.398501"						
-						zoomLevel="10"
-						delay="450"
-						showUserLocation="true"
-						hideCompass="false"
-						disableZoom="false"
-						disableRotation="false"
-						disableScroll="false"
-						disableTilt="false"
-						(mapReady)="onMapReady($event)">
-						</Mapbox>
-				</ContentView>
-			</Gradient>
-			<FAB
-			[@from-right]="'in'"
-			(tap)="fabTapped()"
-			icon="res://ic_add_white"
-			rippleColor="#f1f1f1"
-			class="fab">
-			</FAB>
+				<StackLayout background="#414141"><Button class="btn btn-primary btn-active" text="Find Your Location" (tap)="startWatchingLocation()"></Button>
+				</StackLayout>
+				<MapView #mapView [latitude]="latitude" [longitude]="longitude"
+				[zoom]="zoom" [bearing]="bearing"
+				[tilt]="tilt" i-padding="50,50,50,50" [padding]="padding" (mapReady)="onMapReady($event)"
+				(markerSelect)="onMarkerEvent($event)" (markerBeginDragging)="onMarkerEvent($event)"
+				(markerEndDragging)="onMarkerEvent($event)" (markerDrag)="onMarkerEvent($event)"
+				(markerInfoWindowTapped)="onMarkerEvent($event)" (coordinateTapped)="onCoordinateTapped($event)"
+   (cameraChanged)="onCameraChanged($event)"></MapView>
+
 		</StackLayout>
   </TabView>
 </GridLayout>
