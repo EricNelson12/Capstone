@@ -43,6 +43,7 @@ import { MainuploadComponent } from './mainupload/mainupload.component';
 // Http client (used for sending POST request for push ~Eric)
 import {HttpClientModule} from '@angular/common/http';
 import { DownloadpageComponent } from './downloadpage/downloadpage.component';
+import { pushService } from './services/push.service';
 
 
 
@@ -122,7 +123,7 @@ const appRoutes:Routes = [
     FormsModule,
     HttpClientModule,
   ],
-  providers: [{ provide: CookieOptions, useValue: {} },AuthguardGuard,CookieService, AuthService,ItemService,MarkdownService, FileuploadService],
+  providers: [pushService,{ provide: CookieOptions, useValue: {} },AuthguardGuard,CookieService, AuthService,ItemService,MarkdownService, FileuploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

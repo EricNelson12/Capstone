@@ -17,6 +17,7 @@ registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView
 import { Observable } from "rxjs/Observable";
 import { firestore } from "nativescript-plugin-firebase";
 const firebase = require("nativescript-plugin-firebase/app");
+const firebaseFCM = require("nativescript-plugin-firebase");
 const firebaseWebApi = require("nativescript-plugin-firebase/app");
 const MapBox = require("nativescript-mapbox");
 
@@ -48,11 +49,15 @@ export class tabsComponent implements OnInit {
   public myItems$: Observable<Array<Item>>;
   private item: Item;
   private items: Array<Item> = [];
+  public autoUpdate = "False";
+
+ 
 
 
   public query: string;
 
   constructor(private zone: NgZone, private route: ActivatedRoute) {
+
     this.route.queryParams.subscribe(params => {
             this.query = params["query"];
         });
@@ -180,6 +185,17 @@ onCameraChanged(args) {
   // initialize the firebase connection
   // get data from firestore
   ngOnInit(): void {
+
+    firebaseFCM.addOnMessageReceivedCallback(
+      (message) => {
+        console.log("Update VIA Background Push Notification")        
+        this.zone.run(() => { // <== added
+          this.firestoreCollectionObservable(); 
+      });
+        
+      }
+    );
+
     firebase.initializeApp({
       persist: false
     }).then(() => {
@@ -189,7 +205,8 @@ onCameraChanged(args) {
   }
 
 
-  firestoreCollectionObservable(): void {
+  public firestoreCollectionObservable(): void {
+    console.log("Function Called: firestoreCollectionObservable()");
     this.myItems$ = Observable.create(subscriber => {
       const colRef: firestore.CollectionReference = firebase.firestore().collection("items");
       colRef.onSnapshot((snapshot: firestore.QuerySnapshot) => {
