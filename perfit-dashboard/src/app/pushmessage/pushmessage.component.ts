@@ -35,6 +35,9 @@ export class PushmessageComponent implements OnInit {
   sendPushNotification() {
 
     this.push.sendPushNotification(this.title,this.selectedOption.topic,this.msg,this.color)
+    alert("Push Notification Sent!");
+    this.title = "";
+    this.msg = "";
   }
 
 }
