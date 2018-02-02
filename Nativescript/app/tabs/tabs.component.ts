@@ -3,13 +3,17 @@ import * as listViewModule from "tns-core-modules/ui/list-view";
 import * as ImageModule from "tns-core-modules/ui/image";
 import { Image } from "tns-core-modules/ui/image";
 import { ImageSource } from "image-source";
+import { Injectable } from "@angular/core";
 import { Info} from './info';
 import { registerElement } from "nativescript-angular/element-registry";
 registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 import {ElementRef, ViewChild} from '@angular/core';
 import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, NavigationExtras} from "@angular/router";
+import {Router} from '@angular/router';
 import * as Geolocation from "nativescript-geolocation";
+const topmost = require("ui/frame").topmost;
+
 // Important - must register MapView plugin in order to use in Angular templates
 registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
 
@@ -40,6 +44,8 @@ export interface Item{
   templateUrl: "./tabs/tabs.component.html",
   styleUrls:["./tabs/tabs.component.css"]
 })
+
+@Injectable()
 export class tabsComponent implements OnInit {
 
 
@@ -52,7 +58,7 @@ export class tabsComponent implements OnInit {
 
   public query: string;
 
-  constructor(private zone: NgZone, private route: ActivatedRoute) {
+  constructor(private zone: NgZone, private route: ActivatedRoute, private router: Router) {
     this.route.queryParams.subscribe(params => {
             this.query = params["query"];
         });
@@ -233,13 +239,26 @@ public firestoreWhereDentists(): void {
             this.items = [];
             querySnapshot.forEach(docSnap => this.items.push(<Item>docSnap.data()));
             subscriber.next(this.items);
-            //console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
+           // console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
            });
     });
   });
 }
 
 
+
+viewDetail(title: string){
+  console.log("clicking view detail" + title);
+
+let navigationExtras: NavigationExtras = {
+  queryParams: {
+      "Title": title,
+  }
+};
+this.router.navigate(["/detail"], navigationExtras);
+  
+  // this.router.navigate(["/detail"]);
+}
 
 
 

@@ -1,0 +1,15 @@
+<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
+    <ng-template let-item="item" class="items">
+        <FlexLayout class="list-item"  >
+            <Label text="{{item.title}}" class="title"></Label>
+            <Image src="{{item.url}}" class=""></Image> 
+            
+            <StackLayout>
+            <Label text="{{item.name}}" class="header1"></Label>
+            <Label text="{{item.time}}" class="timeposted"></Label>
+            <Label text="{{item.title}}" class="title"></Label>
+            <Label text = "{{item.description}}"></Label>
+            </StackLayout>
+        </FlexLayout>
+    </ng-template>
+</ListView>
