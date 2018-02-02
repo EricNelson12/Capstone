@@ -27,6 +27,8 @@ import { detailsComponent } from "./details/details.component";
     tabsComponent,
     detailsComponent
   ],
+  providers: [
+tabsComponent  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
