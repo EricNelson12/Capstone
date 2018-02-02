@@ -6,6 +6,7 @@ import { Item } from '../models/item';
 import { MarkdownService } from '../services/markdown.service';
 import { Upload } from '../models/upload';
 import * as firebase from 'firebase';
+import {pushService} from '../services/push.service';
 
 
 @Component({
@@ -41,6 +42,7 @@ export class UploaderComponent implements OnInit {
     private cookieService:CookieService, 
     private md:MarkdownService,
     private upSvc: ItemService,
+    private push:pushService,
     ) {
     this.user = this.cookieService.get('username'); 
   }
@@ -54,6 +56,11 @@ export class UploaderComponent implements OnInit {
 
   detectFiles($event: Event) {
       this.selectedFiles = ($event.target as HTMLInputElement).files;
+  }
+
+  sendPush(){
+    this.push.sendPushData();
+    console.log("Sending Push");
   }
   
   public pushUpload(upload: Upload) {
@@ -78,6 +85,8 @@ export class UploaderComponent implements OnInit {
 
           this.uploadfile = upload.url;
           this.additem();
+          //Send background update push notification
+          this.push.sendPushData();
           return;
         } else {
           console.error('No download URL!');
