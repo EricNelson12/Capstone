@@ -1,3 +1,5 @@
+<GridLayout tkMainContent>
+
 <ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
     <ng-template let-item="item" class="items">
         <FlexLayout class="list-item"  >
@@ -13,3 +15,4 @@
         </FlexLayout>
     </ng-template>
 </ListView>
+</GridLayout>

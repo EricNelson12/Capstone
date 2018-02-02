@@ -9,7 +9,7 @@ import { AppComponent } from "./app.component";
 import { routes, navigatableComponents} from "./app.routing";
 import { tabsComponent } from './tabs/tabs.component'
 import { SideComponent } from "./sidedrawer/side.component";
-import {detailsComponent} from "./tabs/details.component";
+import { detailsComponent } from "./details/details.component";
 
 
 

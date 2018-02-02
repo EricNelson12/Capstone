@@ -13,7 +13,7 @@ const firebaseWebApi = require("nativescript-plugin-firebase/app");
 
 @Component({
     selector: "detail",
-    templateUrl: "./tabs/details.component.html",
+    templateUrl: "./details/details.component.html",
     styleUrls:["./tabs/tabs.component.css"]
   })
 

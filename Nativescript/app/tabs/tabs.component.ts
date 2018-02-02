@@ -62,12 +62,7 @@ export class tabsComponent implements OnInit {
 
   public query: string;
 
-<<<<<<< HEAD
   constructor(private zone: NgZone, private route: ActivatedRoute, private router: Router) {
-=======
-  constructor(private zone: NgZone, private route: ActivatedRoute) {
-
->>>>>>> f7d301af678ef8790ff598f4cc3034e61eefacad
     this.route.queryParams.subscribe(params => {
             this.query = params["query"];
         });
@@ -276,8 +271,8 @@ let navigationExtras: NavigationExtras = {
       "Title": title,
   }
 };
-this.router.navigate(["/detail"], navigationExtras);
-  
+this.router.navigate(["detail"], navigationExtras);
+  console.log("navigating");
   // this.router.navigate(["/detail"]);
 }
 
