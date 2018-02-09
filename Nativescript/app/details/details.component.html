@@ -1,0 +1,68 @@
+
+
+<!-- CSS Class not working so did in html styling -->
+
+<ActionBar class="action-bar" title="Perfit Dental" 
+style=" 
+background-color: rgb(66, 65, 65);
+font-size: 26;
+color: rgb(182, 253, 1);
+
+" ></ActionBar>
+    
+
+
+
+<GridLayout tkMainContent
+style=" 
+background-color: #414141;
+height: 100%;
+"
+>
+
+
+<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
+    <ng-template let-item="item" class="items">
+        <StackLayout class="list-item"  >
+
+            <StackLayout>    
+                <Label text="{{item.title}}" class="title"></Label>
+            </StackLayout>
+            
+            <GridLayout *ngIf="item.datatype === 'Image'" class="item-image" >
+                <Image src="{{item.url}}"></Image> 
+            </GridLayout> 
+
+
+            <GridLayout *ngIf="item.datatype === 'Video'" class="item-image">
+            <VideoPlayer 
+              src="{{item.url}}"
+              autoplay="false" 
+              height="300">
+            </VideoPlayer>
+            </GridLayout>
+
+            <StackLayout>    
+                <Label text="{{item.description}}" class="title"
+                style=" 
+                font-size: 18;
+                height: 100%;
+                width: 80%;
+                ">
+                ></Label>
+
+                 <Label text="{{item.time}}" class="title"
+                style=" 
+                font-size: 12;
+                text-align: left;
+                ">
+                ></Label>
+
+
+            </StackLayout>
+
+          
+        </StackLayout>
+    </ng-template>
+</ListView>
+</GridLayout>

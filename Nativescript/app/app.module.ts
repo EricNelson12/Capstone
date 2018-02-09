@@ -6,9 +6,10 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
 
 import { AppComponent } from "./app.component";
-import { routes, navigatableComponents } from "./app.routing";
+import { routes, navigatableComponents} from "./app.routing";
 import { tabsComponent } from './tabs/tabs.component'
 import { SideComponent } from "./sidedrawer/side.component";
+import { detailsComponent } from "./details/details.component";
 
 
 
@@ -19,12 +20,15 @@ import { SideComponent } from "./sidedrawer/side.component";
     NativeScriptHttpModule,
     NativeScriptRouterModule,
     NativeScriptRouterModule.forRoot(routes),
-    NativeScriptUISideDrawerModule
+    NativeScriptUISideDrawerModule,
   ],
   declarations: [AppComponent,
     ...navigatableComponents, 
     tabsComponent,
+    detailsComponent
   ],
+  providers: [
+tabsComponent  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
