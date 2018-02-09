@@ -5,8 +5,8 @@ import { Image } from "tns-core-modules/ui/image";
 import { ImageSource } from "image-source";
 import { Injectable } from "@angular/core";
 import { Info} from './info';
-import { registerElement } from "nativescript-angular/element-registry";
-registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
+
+
 import {ElementRef, ViewChild} from '@angular/core';
 import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
 import {ActivatedRoute, NavigationExtras} from "@angular/router";
@@ -15,7 +15,14 @@ import * as Geolocation from "nativescript-geolocation";
 const topmost = require("ui/frame").topmost;
 
 // Important - must register MapView plugin in order to use in Angular templates
-registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
+//registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
+
+//videoplayer
+
+import {registerElement} from "nativescript-angular/element-registry";
+registerElement("VideoPlayer", () => require("nativescript-videoplayer").Video);
+
+
 
 //firebase
 import { Observable } from "rxjs/Observable";

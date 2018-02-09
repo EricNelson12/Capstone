@@ -4,30 +4,65 @@
      
         <!-- News Tab -->
         <StackLayout *tabItem="{title: 'Info'}" class="flex">
+			
+ 
+
 			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>
 
+
+			<!-- Entire list --> 
 			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
-				<ng-template let-item="item" class="items">
+				
+
+			<!-- individual item --> 
+				<ng-template let-item="item" class="entire-item" >
+					
+
 					<StackLayout class="list-item">
-						<GridLayout *ngIf="item.datatype === 'Image'">
-						<Image src="{{item.url}}" class=""></Image> 
+				
+				<StackLayout>
+				<Label text="{{item.title}}" class="title" (tap) = "viewDetail(item.title)"></Label>
+				</StackLayout>
+
+				<GridLayout *ngIf="item.datatype === 'Image'" class="item-image" >
+				<Image src="{{item.url}}" (tap) = "viewDetail(item.title)"></Image> 
+				</GridLayout> 
+
+
+
+						<GridLayout *ngIf="item.datatype === 'Video'" class="item-image">
+						
+<!-- https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4 -->
+							<VideoPlayer 
+						      src="{{item.url}}"
+						      autoplay="false" 
+						      height="300"></VideoPlayer>
+
+						</GridLayout>
+						
+						<GridLayout *ngIf="item.datatype === 'Pdf'" class="item-image">
+						<Label text="This will show a PDF" (tap) = "viewDetail(item.title)"></Label> 
 						</GridLayout> 
-						<StackLayout>
-						<Label text="{{item.name}}" class="header1"></Label>
-						<Label text="{{item.time}}" class="timeposted"></Label>
-						<Label text="{{item.title}}" class="title"></Label>
+
+
+						<StackLayout class="timeposted">
+						<Label text="Date posted: {{item.time}}"></Label>
 						</StackLayout>
 
+						
+
+
 					</StackLayout>
+
+
 				</ng-template>
 			</ListView>
 		</StackLayout>
 
         <!-- Info Tab -->
         <!-- <StackLayout *tabItem="{title: 'Info'}" class="flex">-->
-	<StackLayout *tabItem="{title: 'News'}" class="flex">
+		<StackLayout *tabItem="{title: 'News'}" class="flex">
 			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>			
-			<Button text="Update" (tap)="firestoreCollectionObservable()" class="btn"></Button>
 			
 				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
 				<ng-template let-item="item" class="items">
@@ -43,16 +78,8 @@
 			</ListView>
 		</StackLayout>
 
-				<!--
-				<div *ngIf="item.datatype == 'Video'; ">
-				<video class="fileimage2" width="500" height="500" controls>
-				<source src="{{ item.url }}" type="video/mp4">
-				</video>			  
-				</div>
-				<div class="pdf" *ngIf="item.datatype == 'PDF'; ">
-				<a class="pdf" href="{{ item.url }}">{{ item.name }}</a>
-				</div>
-				-->
+
+				
 		
 
         <!-- Providers Tab -->

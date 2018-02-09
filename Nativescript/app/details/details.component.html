@@ -1,18 +1,32 @@
+
+<ActionBar class="action-bar" title="Perfit Dental"></ActionBar>
+    
+
 <GridLayout tkMainContent>
 
 <ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
     <ng-template let-item="item" class="items">
-        <FlexLayout class="list-item"  >
-            <Label text="{{item.title}}" class="title"></Label>
-            <Image src="{{item.url}}" class=""></Image> 
-            
-            <StackLayout>
-            <Label text="{{item.name}}" class="header1"></Label>
-            <Label text="{{item.time}}" class="timeposted"></Label>
-            <Label text="{{item.title}}" class="title"></Label>
-            <Label text = "{{item.description}}"></Label>
+        <StackLayout class="list-item"  >
+
+            <StackLayout>    
+                <Label text="{{item.title}}" class="title"></Label>
             </StackLayout>
-        </FlexLayout>
+            
+            <GridLayout *ngIf="item.datatype === 'Image'" class="item-image" >
+                <Image src="{{item.url}}"></Image> 
+            </GridLayout> 
+
+
+            <GridLayout *ngIf="item.datatype === 'Video'" class="item-image">
+            <VideoPlayer 
+              src="{{item.url}}"
+              autoplay="false" 
+              height="300">
+            </VideoPlayer>
+            </GridLayout>
+
+          
+        </StackLayout>
     </ng-template>
 </ListView>
 </GridLayout>
