@@ -213,7 +213,7 @@ onCameraChanged(args) {
     }).then(() => {
       console.log("Firebase initialized");
     });
-     //this.firestoreCollectionObservable();
+     this.firestoreCollectionObservable();
   }
 
 

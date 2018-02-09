@@ -3,11 +3,10 @@
  <TabView #tabview tabBackgroundColor="#414141" selectedTabTextColor="rgb(182, 253, 1)" >
      
         <!-- News Tab -->
-        <StackLayout *tabItem="{title: 'Info'}" class="flex">
-			
- 
 
-			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>
+        <StackLayout *tabItem="{title: 'Info'}" class="flex">
+			<!-- <Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button> -->
+
 
 
 			<!-- Entire list --> 
@@ -61,8 +60,11 @@
 
         <!-- Info Tab -->
         <!-- <StackLayout *tabItem="{title: 'Info'}" class="flex">-->
-		<StackLayout *tabItem="{title: 'News'}" class="flex">
-			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>			
+
+	<StackLayout *tabItem="{title: 'News'}" class="flex">
+			<!-- <Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>			 -->
+			<!-- <Button text="Update" (tap)="firestoreCollectionObservable()" class="btn"></Button> -->
+
 			
 				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
 				<ng-template let-item="item" class="items">

@@ -9,16 +9,17 @@
         <!-- <Label [text]="mainContentText" textWrap="true" class="drawerContentText"></Label> -->
         <ActionBar class="action-bar" title="">
                 <StackLayout orientation="horizontal"
-                  ios:horizontalAlignment="left"
-                  android:horizontalAlignment="left"> 
-                 <Button text="≡" (tap)="openDrawer()" class="drawerContentButton"></Button>
-                  <Label text="Perfit Dental" class="title" ></Label>
 
 
                   <!--<Label text="Perfit Dental"></Label> -->
-                </StackLayout>
 
-              </ActionBar>
+                    ios:horizontalAlignment="left"
+                    android:horizontalAlignment="left"> 
+                    <Button text="≡" (tap)="openDrawer()" class="drawerContentButton"></Button> 
+                    <Image src="~/images/mainlogo.png" class = "image"></Image>            
+
+                </StackLayout>
+        </ActionBar>
         <tabs></tabs>
     </StackLayout>
 
@@ -32,7 +33,7 @@
         <!-- switch buttons in menu bar -->
         <StackLayout class="sideStackLayout">
                 <!-- permissions switch -->
-                <StackLayout orientation="horizontal" horizontalAlignment="center">
+                <StackLayout orientation="horizontal" horizontalAlignment="center" class= "switches">
                     <label text = "Dental Professional?"></label>
                     <switch (checkedChange) = "professionalSwitch($event)"></switch>
                 </StackLayout>
@@ -42,11 +43,12 @@
                     <label text = "Push Notifications?"></label>
                     <switch  (checkedChange) = "notificationSwitch($event)" ></switch>
                 </StackLayout>
+                <StackLayout orientation="vertical" class="bottomlabel">
+                        <Label text="Contact Perfit" class="sideLabel sideLightGrayLabel"></Label>
+                        <label text ="perfitdental.com" class = "sideLabel"></label>
+                </StackLayout>
             
-            <Label text="More Options" class="sideLabel sideLightGrayLabel"></Label>
-            <label text ="Option1?" tap="openDrawer()" class = "sideLabel"></label>
-            <Label text="Option2?" class="sideLabel"></Label>
-            <Label text="Option3?" class="sideLabel"></Label>            
+                     
         </StackLayout>
     </StackLayout>
 
