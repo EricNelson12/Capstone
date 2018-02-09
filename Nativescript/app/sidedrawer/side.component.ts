@@ -74,12 +74,12 @@ export class SideComponent implements AfterViewInit, OnInit {
         if(profSwitch.checked){
             this.isProf = true;
             this.DentistsOnly();
-            alert("Dentists");
+            // alert("Dentists");
 
         }else{
             this.isProf = false;
             this.Everyone();
-            alert("Everyone");
+            // alert("Everyone");
         }
         console.log("Professional switch on: "+profSwitch.checked);
     }

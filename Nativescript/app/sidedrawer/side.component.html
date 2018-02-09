@@ -28,7 +28,7 @@
         <!-- switch buttons in menu bar -->
         <StackLayout class="sideStackLayout">
                 <!-- permissions switch -->
-                <StackLayout orientation="horizontal" horizontalAlignment="center">
+                <StackLayout orientation="horizontal" horizontalAlignment="center" class= "switches">
                     <label text = "Dental Professional?"></label>
                     <switch (checkedChange) = "professionalSwitch($event)"></switch>
                 </StackLayout>
@@ -38,11 +38,12 @@
                     <label text = "Push Notifications?"></label>
                     <switch  (checkedChange) = "notificationSwitch($event)" ></switch>
                 </StackLayout>
+                <StackLayout orientation="vertical" class="bottomlabel">
+                        <Label text="Contact Perfit" class="sideLabel sideLightGrayLabel"></Label>
+                        <label text ="perfitdental.com" class = "sideLabel"></label>
+                </StackLayout>
             
-            <Label text="More Options" class="sideLabel sideLightGrayLabel"></Label>
-            <label text ="Option1?" tap="openDrawer()" class = "sideLabel"></label>
-            <Label text="Option2?" class="sideLabel"></Label>
-            <Label text="Option3?" class="sideLabel"></Label>            
+                     
         </StackLayout>
     </StackLayout>
 
