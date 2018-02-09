@@ -3,11 +3,12 @@ import {SideComponent} from "./sidedrawer/side.component";
 import {detailsComponent} from "./details/details.component";
 import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
+import {AppComponent} from "./app.component";
 
 
 
 export const routes: Routes = [
-  { path: "", component: tabsComponent },
+  { path: "", component: AppComponent },
   { path: "side", component: SideComponent },
   { path: "tabs", component: tabsComponent },
   { path: "detail", component: detailsComponent}
@@ -18,7 +19,8 @@ export const routes: Routes = [
 export const navigatableComponents = [
   tabsComponent,
   SideComponent,
-  detailsComponent
+  detailsComponent,
+  AppComponent,
 ];
 
 
