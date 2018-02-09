@@ -9,12 +9,12 @@
         <!-- <Label [text]="mainContentText" textWrap="true" class="drawerContentText"></Label> -->
         <ActionBar class="action-bar" title="">
                 <StackLayout orientation="horizontal"
-                  ios:horizontalAlignment="left"
-                  android:horizontalAlignment="left"> 
-                 <Button text="≡" (tap)="openDrawer()" class="drawerContentButton"></Button>
-                  <SearchBar hint="Search Here" (loaded)="onSearchBarLoaded($event)" ></SearchBar>
+                    ios:horizontalAlignment="left"
+                    android:horizontalAlignment="left"> 
+                    <Button text="≡" (tap)="openDrawer()" class="drawerContentButton"></Button> 
+                    <Image src="~/images/mainlogo.png" class = "image"></Image>            
                 </StackLayout>
-              </ActionBar>
+        </ActionBar>
         <tabs></tabs>
     </StackLayout>
 
