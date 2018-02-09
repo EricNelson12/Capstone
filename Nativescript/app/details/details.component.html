@@ -1,3 +1,10 @@
+<ActionBar>
+    <ActionItem (tap)="back()">
+        <Button text="Back" class="action-item"></Button>
+      </ActionItem>   
+    <Label class="action-bar-title" text="PERFIT"></Label>
+
+</ActionBar>
 <GridLayout tkMainContent>
 
 <ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">

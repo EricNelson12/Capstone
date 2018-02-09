@@ -9,6 +9,8 @@ platformNativeScriptDynamic().bootstrapModule(AppModule);
 
 firebase.subscribeToTopic("update");
 
+
+
 // firebase.getCurrentPushToken().then((token: string) => {
 //     // may be null if not known yet
 //     console.log("Current push token: " + token);

@@ -62,4 +62,7 @@ export class detailsComponent implements OnInit{
         this.item = this.getNewsDetail(this.title)[0];
     }
  
+    back(){
+        this.router.navigate(["side"]);
+    }
 }
