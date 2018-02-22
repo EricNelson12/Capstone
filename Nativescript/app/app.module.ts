@@ -5,12 +5,23 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
 
+
+
+
+
+
 import { AppComponent } from "./app.component";
 import { routes, navigatableComponents } from "./app.routing";
 import { tabsComponent } from './tabs/tabs.component'
 import { SideComponent } from "./sidedrawer/side.component";
 
+import * as platform from "platform";
+declare var GMSServices: any;
 
+if (platform.isIOS) { 
+console.log("fuck");
+  GMSServices.provideAPIKey("AIzaSyDjsJ6pC6yoKC0-w_n7k8gQpdglwJjdLlc");
+}
 
 @NgModule({
   imports: [
@@ -23,7 +34,7 @@ import { SideComponent } from "./sidedrawer/side.component";
   ],
   declarations: [AppComponent,
     ...navigatableComponents, 
-    tabsComponent,
+    tabsComponent
   ],
   bootstrap: [AppComponent]
 })
