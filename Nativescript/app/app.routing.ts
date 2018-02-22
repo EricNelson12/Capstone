@@ -7,14 +7,12 @@ import {AppComponent} from "./app.component";
 
 
 
-export const routes: Routes = [
-  { path: "", component: AppComponent },
+export const routes = [
+  { path: "", component: tabsComponent },
   { path: "side", component: SideComponent },
   { path: "tabs", component: tabsComponent },
   { path: "detail", component: detailsComponent}
-
 ];
-
 
 export const navigatableComponents = [
   tabsComponent,
@@ -22,5 +20,3 @@ export const navigatableComponents = [
   detailsComponent,
   AppComponent,
 ];
-
-
