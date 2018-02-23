@@ -40,7 +40,10 @@ height: 100%;
               height="300">
             </VideoPlayer>
             </GridLayout>
-
+            <GridLayout *ngIf="item.datatype === 'PDF'" class="item-image">
+                <Label text="This will show a PDF" (tap) = "viewDetail(item.title)"></Label> 
+                <PDFView src="{{item.url}}" (load)="onLoad()"></PDFView>
+            </GridLayout> 
 
             <StackLayout>    
                 <Label text="{{item.description}}" class="title"
