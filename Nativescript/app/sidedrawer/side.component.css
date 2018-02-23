@@ -18,17 +18,11 @@ button {
     margin: 0,0,0,0;
     color: rgb(182, 253, 1);
     border-radius: 5;
-    border-width: .01;
+    border-width: 1;
     border-color: rgb(66, 65, 65);
     font-size:20;
     float: left;
     padding: 0;
-}
-
-.title{
-    font-size: 26;
-    color: rgb(182, 253, 1);
-    
 }
 
 

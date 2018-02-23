@@ -23,7 +23,7 @@ height: 100%;
 
 <ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
     <ng-template let-item="item" class="items">
-        <StackLayout class="list-item"  >
+        <StackLayout class="list-item"> 
 
             <StackLayout>    
                 <Label text="{{item.title}}" class="title"></Label>
@@ -33,7 +33,6 @@ height: 100%;
                 <Image src="{{item.url}}"></Image> 
             </GridLayout> 
 
-
             <GridLayout *ngIf="item.datatype === 'Video'" class="item-image">
             <VideoPlayer 
               src="{{item.url}}"
@@ -41,6 +40,7 @@ height: 100%;
               height="300">
             </VideoPlayer>
             </GridLayout>
+
 
             <StackLayout>    
                 <Label text="{{item.description}}" class="title"
@@ -58,11 +58,13 @@ height: 100%;
                 ">
                 ></Label>
 
-
             </StackLayout>
 
+
+        
+
           
-        </StackLayout>
+       </StackLayout> 
     </ng-template>
 </ListView>
 </GridLayout>

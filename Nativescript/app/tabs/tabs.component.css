@@ -54,11 +54,8 @@ button {
 }
 
 .title{
-    margin-top: 20;
-    margin-bottom: 20;
     color: white;
     font-size: 20;
-    text-overflow: ellipsis;
 }
 
 .timeposted{
@@ -67,8 +64,13 @@ button {
     text-align: left;
 }
 
+.img{
+    height: 100;
+    margin: 15;
+}
+
 .btn{
- background-color: #414141;
+    background-color: #414141;
     color: rgb(182, 253, 1);
 }
 
@@ -76,20 +78,11 @@ button {
  background-color: #414141;
 }
 
-/*  each item in listview */
-
-.list-item{
-    background-color: #414141;
+.items{
+    margin-top: 10;
+    margin-bottom: 10;
 }
 
-/*  image in each item */
-.item-image{
-  
-}
-
-img{
-   
-}
 
 
 
