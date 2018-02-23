@@ -6,7 +6,7 @@
         <StackLayout *tabItem="{title: 'News'}" class="flex">
 
 			
-			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button> 
+			<!-- <Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>  -->
 			<!-- Entire list --> 
 			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
 			<!-- individual item --> 
@@ -46,7 +46,7 @@
 
         <!-- Info Tab -->
         <GridLayout *tabItem="{title: 'Info'}" class="flex">
-			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button> 
+			<!-- <Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>  -->
 			<!-- Entire list --> 
 			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
 			<!-- individual item --> 

@@ -5,19 +5,11 @@
   "repository": "<fill-your-repository-here>",
   "nativescript": {
     "id": "org.nativescript.PerfitDental",
-<<<<<<< HEAD
-    "tns-ios": {
-      "version": "3.3.0"
-    },
-    "tns-android": {
-      "version": "3.2.0"
-=======
     "tns-android": {
       "version": "3.2.0"
     },
     "tns-ios": {
       "version": "3.4.1"
->>>>>>> 78aad8b26c2cd89551cd93042ab4496257e53f68
     }
   },
   "dependencies": {
