@@ -4,12 +4,12 @@
   "readme": "NativeScript Application",
   "repository": "<fill-your-repository-here>",
   "nativescript": {
-    "id": "org.klar.ravan",
+    "id": "org.nativescript.PerfitDental",
     "tns-ios": {
       "version": "3.3.0"
     },
     "tns-android": {
-      "version": "3.4.1"
+      "version": "3.2.0"
     }
   },
   "dependencies": {
