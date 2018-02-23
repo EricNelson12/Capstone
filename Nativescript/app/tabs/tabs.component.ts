@@ -11,6 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 import * as Geolocation from "nativescript-geolocation";
 import {Router} from '@angular/router';
 
+
 // Important - must register MapView plugin in order to use in Angular templates
 registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
 registerElement("VideoPlayer", () => require("nativescript-videoplayer").Video);
@@ -48,15 +49,15 @@ export interface Item{
 export class tabsComponent implements OnInit {
 
 
+
+
+
+
   //item from collection 
   public myItem$: Observable<Item>;
   public myItems$: Observable<Array<Item>>;
   private item: Item;
   private items: Array<Item> = [];
-  public autoUpdate = "False";
-
- 
-
 
   public query: string;
 
@@ -67,9 +68,30 @@ export class tabsComponent implements OnInit {
         });
   }
 
-  show(){
-    alert(this.query);
+
+  // initialize the firebase connection
+  // get data from firestore
+  ngOnInit(): void {
+
+    firebaseFCM.addOnMessageReceivedCallback(
+      (message) => {
+        console.log("Update VIA Background Push Notification")        
+        this.zone.run(() => { // <== added
+          this.firestoreCollectionObservable(); 
+      });
+        
+      }
+    );
+
+    firebase.initializeApp({
+      persist: false
+    }).then(() => {
+      console.log("Firebase initialized");
+    });
+     this.firestoreCollectionObservable();
   }
+
+ 
 
 
 latitude =  49.9298;
@@ -186,27 +208,7 @@ onCameraChanged(args) {
     console.log("Camera changed: " + JSON.stringify(args.camera), JSON.stringify(args.camera) === this.lastCamera);
     this.lastCamera = JSON.stringify(args.camera);
 }
-  // initialize the firebase connection
-  // get data from firestore
-  ngOnInit(): void {
 
-    firebaseFCM.addOnMessageReceivedCallback(
-      (message) => {
-        console.log("Update VIA Background Push Notification")        
-        this.zone.run(() => { // <== added
-          this.firestoreCollectionObservable(); 
-      });
-        
-      }
-    );
-
-    firebase.initializeApp({
-      persist: false
-    }).then(() => {
-      console.log("Firebase initialized");
-    });
-     this.firestoreCollectionObservable();
-  }
 
 
   public firestoreCollectionObservable(): void {
