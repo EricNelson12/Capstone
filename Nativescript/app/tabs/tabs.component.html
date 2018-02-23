@@ -3,22 +3,15 @@
  <TabView #tabview tabBackgroundColor="#414141" selectedTabTextColor="rgb(182, 253, 1)" >
      
         <!-- News Tab -->
+        <StackLayout *tabItem="{title: 'News'}" class="flex">
 
-        <StackLayout *tabItem="{title: 'Info'}" class="flex">
-			<!-- <Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button> -->
-
-
-
+			
+			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button> 
 			<!-- Entire list --> 
 			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
-				
-
 			<!-- individual item --> 
 				<ng-template let-item="item" class="entire-item" >
-					
-
 					<StackLayout class="list-item">
-				
 				<StackLayout>
 				<Label text="{{item.title}}" class="title" (tap) = "viewDetail(item.title)"></Label>
 				</StackLayout>
@@ -28,10 +21,8 @@
 				</GridLayout> 
 
 
-
 						<GridLayout *ngIf="item.datatype === 'Video'" class="item-image">
 						
-<!-- https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4 -->
 							<VideoPlayer 
 						      src="{{item.url}}"
 						      autoplay="false" 
@@ -41,56 +32,67 @@
 						
 						<GridLayout *ngIf="item.datatype === 'Pdf'" class="item-image">
 						<Label text="This will show a PDF" (tap) = "viewDetail(item.title)"></Label> 
-						</GridLayout> 
 
+						</GridLayout> 
 
 						<StackLayout class="timeposted">
 						<Label text="Date posted: {{item.time}}"></Label>
 						</StackLayout>
 
-						
-
-
 					</StackLayout>
-
-
 				</ng-template>
 			</ListView>
 		</StackLayout>
 
         <!-- Info Tab -->
-        <!-- <StackLayout *tabItem="{title: 'Info'}" class="flex">-->
+        <GridLayout *tabItem="{title: 'Info'}" class="flex">
+			<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button> 
+			<!-- Entire list --> 
+			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
+			<!-- individual item --> 
+				<ng-template let-item="item" class="entire-item" >
+					<StackLayout class="list-item">
+				<StackLayout>
+				<Label text="{{item.title}}" class="title" (tap) = "viewDetail(item.title)"></Label>
+				</StackLayout>
 
-	<StackLayout *tabItem="{title: 'News'}" class="flex">
-			<!-- <Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>			 -->
-			<!-- <Button text="Update" (tap)="firestoreCollectionObservable()" class="btn"></Button> -->
+				<GridLayout *ngIf="item.datatype === 'Image'" class="item-image" >
+				<Image src="{{item.url}}" (tap) = "viewDetail(item.title)"></Image> 
+				</GridLayout> 
 
-			
-				<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
-				<ng-template let-item="item" class="items">
-					<FlexLayout class="list-item"  >
-						<Label text="{{item.title}}" class="title" (tap) = "viewDetail(item.title)"></Label>
-						<Image src="{{item.url}}" class="" ></Image> 
+
+						<GridLayout *ngIf="item.datatype === 'Video'" class="item-image">
 						
-						<StackLayout>
-						<Label text="{{item.time}}" class="timeposted"></Label>
+							<VideoPlayer 
+						      src="{{item.url}}"
+						      autoplay="false" 
+						      height="300"></VideoPlayer>
+
+						</GridLayout>
+						
+						<GridLayout *ngIf="item.datatype === 'Pdf'" class="item-image">
+						<Label text="This will show a PDF" (tap) = "viewDetail(item.title)"></Label> 
+
+						</GridLayout> 
+
+						<StackLayout class="timeposted">
+						<Label text="Date posted: {{item.time}}"></Label>
 						</StackLayout>
-					</FlexLayout>
+
+					</StackLayout>
 				</ng-template>
 			</ListView>
-		</StackLayout>
+		</GridLayout>
 
 
-				
-		
+
+
 
         <!-- Providers Tab -->
   
-        <StackLayout *tabItem="{title: 'Providers'}">
-				
-<!--
-				<StackLayout background="#414141"><Button class="btn btn-primary btn-active" text="Find Your Location" (tap)="startWatchingLocation()"></Button>
-				</StackLayout>
+        <GridLayout *tabItem="{title: 'Providers'}">
+				<GridLayout> background="#414141"><Button class="btn btn-primary btn-active" text="Find Your Location" (tap)="startWatchingLocation()"></Button>
+				</GridLayout>
 				<MapView #mapView [latitude]="latitude" [longitude]="longitude"
 				[zoom]="zoom" [bearing]="bearing"
 				[tilt]="tilt" i-padding="50,50,50,50" [padding]="padding" (mapReady)="onMapReady($event)"
@@ -98,8 +100,9 @@
 				(markerEndDragging)="onMarkerEvent($event)" (markerDrag)="onMarkerEvent($event)"
 				(markerInfoWindowTapped)="onMarkerEvent($event)" (coordinateTapped)="onCoordinateTapped($event)"
    (cameraChanged)="onCameraChanged($event)"></MapView>
--->
-		</StackLayout>
+   
+
+		</GridLayout>
   </TabView>
 </GridLayout>
 

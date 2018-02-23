@@ -3,26 +3,20 @@ import * as listViewModule from "tns-core-modules/ui/list-view";
 import * as ImageModule from "tns-core-modules/ui/image";
 import { Image } from "tns-core-modules/ui/image";
 import { ImageSource } from "image-source";
-import { Injectable } from "@angular/core";
 import { Info} from './info';
-
-
+import { registerElement } from "nativescript-angular/element-registry";
 import {ElementRef, ViewChild} from '@angular/core';
 import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
-import {ActivatedRoute, NavigationExtras} from "@angular/router";
-import {Router} from '@angular/router';
+import {ActivatedRoute} from "@angular/router";
 import * as Geolocation from "nativescript-geolocation";
-const topmost = require("ui/frame").topmost;
+import {Router} from '@angular/router';
+
 
 // Important - must register MapView plugin in order to use in Angular templates
-//registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
-
-//videoplayer
-
-import {registerElement} from "nativescript-angular/element-registry";
+registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
 registerElement("VideoPlayer", () => require("nativescript-videoplayer").Video);
 
-
+import {NavigationExtras} from "@angular/router";
 
 //firebase
 import { Observable } from "rxjs/Observable";
@@ -52,9 +46,11 @@ export interface Item{
   templateUrl: "./tabs/tabs.component.html",
   styleUrls:["./tabs/tabs.component.css"]
 })
-
-@Injectable()
 export class tabsComponent implements OnInit {
+
+
+
+
 
 
   //item from collection 
@@ -62,22 +58,40 @@ export class tabsComponent implements OnInit {
   public myItems$: Observable<Array<Item>>;
   private item: Item;
   private items: Array<Item> = [];
-  public autoUpdate = "False";
-
- 
-
 
   public query: string;
 
   constructor(private zone: NgZone, private route: ActivatedRoute, private router: Router) {
+
     this.route.queryParams.subscribe(params => {
             this.query = params["query"];
         });
   }
 
-  show(){
-    alert(this.query);
+
+  // initialize the firebase connection
+  // get data from firestore
+  ngOnInit(): void {
+
+    firebaseFCM.addOnMessageReceivedCallback(
+      (message) => {
+        console.log("Update VIA Background Push Notification")        
+        this.zone.run(() => { // <== added
+          this.firestoreCollectionObservable(); 
+      });
+        
+      }
+    );
+
+    firebase.initializeApp({
+      persist: false
+    }).then(() => {
+      console.log("Firebase initialized");
+    });
+     this.firestoreCollectionObservable();
   }
+
+ 
 
 
 latitude =  49.9298;
@@ -194,27 +208,7 @@ onCameraChanged(args) {
     console.log("Camera changed: " + JSON.stringify(args.camera), JSON.stringify(args.camera) === this.lastCamera);
     this.lastCamera = JSON.stringify(args.camera);
 }
-  // initialize the firebase connection
-  // get data from firestore
-  ngOnInit(): void {
 
-    firebaseFCM.addOnMessageReceivedCallback(
-      (message) => {
-        console.log("Update VIA Background Push Notification")        
-        this.zone.run(() => { // <== added
-          this.firestoreCollectionObservable(); 
-      });
-        
-      }
-    );
-
-    firebase.initializeApp({
-      persist: false
-    }).then(() => {
-      console.log("Firebase initialized");
-    });
-     this.firestoreCollectionObservable();
-  }
 
 
   public firestoreCollectionObservable(): void {
@@ -262,13 +256,11 @@ public firestoreWhereDentists(): void {
             this.items = [];
             querySnapshot.forEach(docSnap => this.items.push(<Item>docSnap.data()));
             subscriber.next(this.items);
-           // console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
+            //console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
            });
     });
   });
 }
-
-
 
 viewDetail(title: string){
   console.log("clicking view detail" + title);
