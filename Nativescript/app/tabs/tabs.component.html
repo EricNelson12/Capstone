@@ -32,6 +32,8 @@
 						
 						<GridLayout *ngIf="item.datatype === 'Pdf'" class="item-image">
 						<Label text="This will show a PDF" (tap) = "viewDetail(item.title)"></Label> 
+						<PDFView src="{{item.url}}" (load)="onLoad()"></PDFView>
+
 
 						</GridLayout> 
 
