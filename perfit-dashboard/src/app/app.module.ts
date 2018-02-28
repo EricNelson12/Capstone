@@ -45,8 +45,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { DownloadpageComponent } from './downloadpage/downloadpage.component';
 import { pushService } from './services/push.service';
 
-
-
 export const firebaseConfig = {
       apiKey: "AIzaSyC6empcDciB_guvtZiNwFk7R-lTVThpPeQ",
       authDomain: "perfitdental-7951d.firebaseapp.com",

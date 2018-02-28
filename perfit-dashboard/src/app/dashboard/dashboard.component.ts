@@ -40,9 +40,9 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
-		this.itemService.getItems().subscribe(items => {
-			this.items = items;
-		})
+    this.itemService.getItems().subscribe(items => {
+      this.items = items;
+    })
 
 
   }
@@ -98,4 +98,3 @@ export class DashboardComponent implements OnInit {
   }
 
 }
-
