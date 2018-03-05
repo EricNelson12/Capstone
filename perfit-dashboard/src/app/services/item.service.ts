@@ -13,11 +13,7 @@ import { CookieService, CookieOptions } from 'angular2-cookie/core';
 export class ItemService{
 	
 
-	item: Item = {
-  		title: '',
-  		description: '',
-    	url: '',
-  	}
+	
 	// path for the files
   	basePath = 'uploads';
 	

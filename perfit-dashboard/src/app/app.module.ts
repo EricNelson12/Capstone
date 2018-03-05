@@ -45,15 +45,12 @@ import {HttpClientModule} from '@angular/common/http';
 import { DownloadpageComponent } from './downloadpage/downloadpage.component';
 import { pushService } from './services/push.service';
 
-
-
 export const firebaseConfig = {
       apiKey: "AIzaSyC6empcDciB_guvtZiNwFk7R-lTVThpPeQ",
       authDomain: "perfitdental-7951d.firebaseapp.com",
       databaseURL: "https://perfitdental-7951d.firebaseio.com",
       projectId: "perfitdental-7951d",
-      //storageBucket: "perfitdental-7951d.appspot.com",
-      storageBucket: "capstone-b5c94.appspot.com",
+      storageBucket: "perfitdental-7951d.appspot.com",
       messagingSenderId: "539232777666"
 }
 
@@ -93,6 +90,7 @@ const appRoutes:Routes = [
     component: DownloadpageComponent
  
    },
+   
   {
     path: 'logout',
     component: LogoutComponent

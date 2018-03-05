@@ -38,6 +38,7 @@ export interface Item{
   datatype:string;
   url: string;
   name: string;
+  articletype: string;
 }
 
 
@@ -49,23 +50,23 @@ export interface Item{
 export class tabsComponent implements OnInit {
 
 
-
-
-
-
   //item from collection 
   public myItem$: Observable<Item>;
   public myItems$: Observable<Array<Item>>;
+
   private item: Item;
-  private items: Array<Item> = [];
+  private items: Array<Item> = []; 
 
   public query: string;
+  public news: "news";
 
   constructor(private zone: NgZone, private route: ActivatedRoute, private router: Router) {
 
     this.route.queryParams.subscribe(params => {
             this.query = params["query"];
         });
+
+
   }
 
 
@@ -77,7 +78,9 @@ export class tabsComponent implements OnInit {
       (message) => {
         console.log("Update VIA Background Push Notification")        
         this.zone.run(() => { // <== added
-          this.firestoreCollectionObservable(); 
+         this.firestoreWhereDentists();
+         this.firestoreWhereEveryone();
+
       });
         
       }
@@ -88,7 +91,10 @@ export class tabsComponent implements OnInit {
     }).then(() => {
       console.log("Firebase initialized");
     });
-     this.firestoreCollectionObservable();
+    
+     this.firestoreWhereDentists();
+         this.firestoreWhereEveryone();
+
   }
 
  
@@ -210,7 +216,7 @@ onCameraChanged(args) {
 }
 
 
-
+/*
   public firestoreCollectionObservable(): void {
     console.log("Function Called: firestoreCollectionObservable()");
     this.myItems$ = Observable.create(subscriber => {
@@ -224,30 +230,15 @@ onCameraChanged(args) {
       });
     });
   }
+*/
 
-  public firestoreWhereEveryone(): void {
-    this.myItems$ = Observable.create(subscriber => {
-     const query: firestore.Query = firebase.firestore().collection("items")
-        .where("permissions", "==", this.query);
-    query
-        .get()
-        .then((querySnapshot: firestore.QuerySnapshot) => {
-          querySnapshot.forEach(doc => {
 
-            this.items = [];
-            querySnapshot.forEach(docSnap => this.items.push(<Item>docSnap.data()));
-            subscriber.next(this.items);
-
-            //console.log(`Dentist Permissions: ${doc.id} => ${JSON.stringify(doc.data())}`);
-           });
-    });
-  });
-}
   
 public firestoreWhereDentists(): void {
     this.myItems$ = Observable.create(subscriber => {
      const query: firestore.Query = firebase.firestore().collection("items")
         .where("permissions", "==", this.query);
+        //.where("articletype", "==", "News"); 
     query
         .get()
         .then((querySnapshot: firestore.QuerySnapshot) => {
@@ -261,6 +252,12 @@ public firestoreWhereDentists(): void {
     });
   });
 }
+
+
+
+
+
+
 
 viewDetail(title: string){
   console.log("clicking view detail" + title);

@@ -32,8 +32,19 @@
        <option selected="selected" >Image</option>
        <option>Video</option>
        <option>PDF</option>
+       <option>STL</option>
        </select>
        </div>
+
+
+       <div class="">
+       <label>Article Type</label>
+       <select type="text" placeholder="Add Datatype" [(ngModel)]="item.articletype" name="permissions">
+       <option selected="selected" >News</option>
+       <option>Info</option>
+       </select>
+       </div>
+
 
        <!-- file uploader -->
         <div class="container">
@@ -66,10 +77,12 @@
            </label>
 -->
           <hr>
-          <label>Post preview</label>
+         
+
+         <!-- <label>Post preview</label>
 
                 <div [innerHtml]= "convertedText" ></div>
-
+          -->
 
         </div>
         </div>
