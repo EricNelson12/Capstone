@@ -91,6 +91,7 @@ const appRoutes:Routes = [
     component: DownloadpageComponent
  
    },
+   
   {
     path: 'logout',
     component: LogoutComponent

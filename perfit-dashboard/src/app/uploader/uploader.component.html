@@ -36,6 +36,16 @@
        </select>
        </div>
 
+
+       <div class="">
+       <label>Article Type</label>
+       <select type="text" placeholder="Add Datatype" [(ngModel)]="item.articletype" name="permissions">
+       <option selected="selected" >News</option>
+       <option>Info</option>
+       </select>
+       </div>
+
+
        <!-- file uploader -->
         <div class="container">
         <div class="box1" *ngIf="currentUpload">

@@ -8,6 +8,9 @@ import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
 import { Switch } from "ui/switch";
 import {Router, NavigationExtras} from "@angular/router";
 
+import * as dialogs from "ui/dialogs";
+
+
 
 @Component({
     moduleId: module.id,
@@ -75,7 +78,18 @@ export class SideComponent implements AfterViewInit, OnInit {
             this.isProf = true;
             this.DentistsOnly();
             // alert("Dentists");
+/**
+            dialogs.prompt({
+            title: "Your title",
+            neutralButtonText: "Neutral text",
+            defaultText: "Default text",
+            inputType: dialogs.inputType.password
+        }).then(r => {
+            console.log("Dialog result: " + r.result + ", text: " + r.text);
+        });
 
+
+*/
         }else{
             this.isProf = false;
             this.Everyone();
