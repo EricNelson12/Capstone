@@ -10,11 +10,13 @@ import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
 import {ActivatedRoute} from "@angular/router";
 import * as Geolocation from "nativescript-geolocation";
 import {Router} from '@angular/router';
+import { PDFView } from 'nativescript-pdf-view';
 
 
 // Important - must register MapView plugin in order to use in Angular templates
 registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
 registerElement("VideoPlayer", () => require("nativescript-videoplayer").Video);
+registerElement('PDFView', () => PDFView);
 
 import {NavigationExtras} from "@angular/router";
 
@@ -79,7 +81,6 @@ export class tabsComponent implements OnInit {
         console.log("Update VIA Background Push Notification")        
         this.zone.run(() => { // <== added
          this.firestoreWhereDentists();
-         this.firestoreWhereEveryone();
 
       });
         
@@ -93,7 +94,6 @@ export class tabsComponent implements OnInit {
     });
     
      this.firestoreWhereDentists();
-         this.firestoreWhereEveryone();
 
   }
 
@@ -231,8 +231,6 @@ onCameraChanged(args) {
     });
   }
 */
-
-
   
 public firestoreWhereDentists(): void {
     this.myItems$ = Observable.create(subscriber => {
@@ -252,10 +250,6 @@ public firestoreWhereDentists(): void {
     });
   });
 }
-
-
-
-
 
 
 

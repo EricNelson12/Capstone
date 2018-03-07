@@ -26,7 +26,7 @@ height: 100%;
         <StackLayout class="list-item"> 
 
             <StackLayout>    
-                <Label text="{{item.title}}" class="title" textWrap="false"></Label>
+                <Label text="{{item.title}}" class="title" textWrap="true"></Label>
             </StackLayout>
             
             <GridLayout *ngIf="item.datatype === 'Image'" class="item-image" >
@@ -43,12 +43,13 @@ height: 100%;
 
 
             <StackLayout>    
-                <Label text="{{item.description}}" class="title"
+                <Label text="{{item.description}}" class="title" textWrap="true"
+                
                 style=" 
-                font-size: 18;
+                font-size: 16;
                 height: 100%;
                 width: 80%;
-                ">
+                "     >
                 ></Label>
 
                  <Label text="{{item.time}}" class="title"

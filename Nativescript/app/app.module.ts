@@ -5,7 +5,6 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
 
-import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 
 import { AppComponent } from "./app.component";
 import { routes, navigatableComponents } from "./app.routing";
@@ -30,7 +29,6 @@ console.log("mapping");
     NativeScriptRouterModule,
     NativeScriptRouterModule.forRoot(routes),
     NativeScriptUISideDrawerModule,
-    NativeScriptUIListViewModule,
   ],
   declarations: [AppComponent,
     ...navigatableComponents, 
