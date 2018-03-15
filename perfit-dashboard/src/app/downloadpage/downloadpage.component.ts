@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService, CookieOptions } from 'angular2-cookie/core';
+
 
 @Component({
   selector: 'app-downloadpage',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DownloadpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cookieService:CookieService, 
+    
+    private router: Router) { }
 
   ngOnInit() {
+    if(this.cookieService.get('guest') == "true"){
+      this.router.navigate(['guestpost']);
+
+      
+    }
+
   }
 
 }

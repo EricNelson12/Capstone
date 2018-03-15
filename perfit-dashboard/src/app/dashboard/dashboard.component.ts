@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService, CookieOptions } from 'angular2-cookie/core';
 import * as firebase from 'firebase/app';
 import { ItemService } from '../services/item.service';
 import { Item } from '../models/item';
 import { MarkdownService } from '../services/markdown.service';
 import { FileuploadService } from '../services/fileupload.service';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { Router } from '@angular/router';
+import { CookieService, CookieOptions } from 'angular2-cookie/core';
 
 
 @Component({
@@ -34,12 +35,20 @@ export class DashboardComponent implements OnInit {
   constructor(
     private cookieService:CookieService, 
     private itemService: ItemService, 
-    private md:MarkdownService) {
+    private md:MarkdownService,
+    private router: Router) {
 
    }
 
 
   ngOnInit() {
+    if(this.cookieService.get('guest') == "true"){
+      this.router.navigate(['guestpost']);
+
+      
+    }
+
+
     this.itemService.getItems().subscribe(items => {
       this.items = items;
     })
@@ -57,7 +66,9 @@ export class DashboardComponent implements OnInit {
     this.itemService.updateItem(item);
     this.clearState;
     alert("post updated!");
+    this.clearState();
   }
+
 
 
   deleteItem(event,item: Item){

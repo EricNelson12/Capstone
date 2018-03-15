@@ -6,6 +6,8 @@
     <ul *ngFor="let item of items" class="collection">
       <li class="collection-item">
       
+      <h1 *ngIf="item.verified ==='No';"class="item-verify">Verify Post</h1>  
+
       <h1 class="item-title">{{ item.title }}</h1> <hr>
         
         <div *ngIf="item.datatype == 'Image'; ">
@@ -41,9 +43,10 @@
         <br> <b>Article Type: </b> {{ item.articletype }}
         <br> <b>Posted on: </b> {{ item.time }}
         <br> <b>Post id: </b> {{ item.id }}
-        <div class="buttons">
+        <div class="buttons">          
           <button  class="button" (click)="editItem($event, item)" >Edit</button>
           <button  class="button" (click)="clearState()"  >Hide</button>
+
         </div>
       </div>
       <div *ngIf="editState && itemToEdit.id == item.id" >
@@ -63,17 +66,26 @@
                   <option>Dentists/Doctors only</option>
                    </select>
               </div>
-
-
-
-
+              <div class="editthis">
+                  <b>Article Type:</b>
+                   <select type="text" placeholder="Add Datatype" [(ngModel)]="item.verified" name="permissions">
+                    <option selected="selected" >News</option>
+                    <option>Info</option>
+                     </select>
+                </div>
+              <div class="editthis">
+                  <b>Verify</b>
+                   <select type="text" placeholder="Add Datatype" [(ngModel)]="item.verified" name="permissions">
+                    <option selected="selected" >Yes</option>
+                    <option>No</option>
+                     </select>
+                </div>
+              
                 <br>
                 <div class="buttons">
-            <button type="submit" value="Update Item" class="">Update Post</button>
+                <button type="submit" value="Update Item" class="">Update Post</button>
                 <button (click)="deleteItem($event,item)"  class="">Delete Post</button>
-
                 </div>
-                
         </form>
       </div>
 
@@ -82,10 +94,9 @@
     </ul>
 
   </div>
+  <div class="bottom">
+
+  </div>
+
 </body>
 
-<ng-template #noItems>
-  <hr>
-  <h5>There are no items to list</h5>
-
-</ng-template>

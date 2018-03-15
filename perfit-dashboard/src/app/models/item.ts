@@ -8,7 +8,7 @@ export interface Item{
 	datatype?:string;
 	url?: string;
 	name?: string;
-
+	verified?: string;
 }
 
 

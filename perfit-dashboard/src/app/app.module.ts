@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { LogoutComponent } from './logout/logout.component';
 
+import { GuestpostComponent } from './guestpost/guestpost.component';
 
 
 import {PushmessageComponent} from './pushmessage/pushmessage.component';
@@ -90,7 +91,10 @@ const appRoutes:Routes = [
     component: DownloadpageComponent
  
    },
-   
+   {
+    path: 'guestpost',
+    component: GuestpostComponent
+   },
   {
     path: 'logout',
     component: LogoutComponent
@@ -108,7 +112,7 @@ const appRoutes:Routes = [
     UploaderComponent,
     LogoutComponent,
     MainuploadComponent,    
-    PushmessageComponent, DownloadpageComponent,    
+    PushmessageComponent, DownloadpageComponent, GuestpostComponent,    
 
   ],
   imports: [

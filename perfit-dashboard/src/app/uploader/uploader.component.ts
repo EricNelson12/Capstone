@@ -7,6 +7,7 @@ import { MarkdownService } from '../services/markdown.service';
 import { Upload } from '../models/upload';
 import * as firebase from 'firebase';
 import {pushService} from '../services/push.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class UploaderComponent implements OnInit {
   	title: '',
   	description: '',
     url: '',
+    verified: '',
   }
   
   formsubmit: boolean;
@@ -43,11 +45,19 @@ export class UploaderComponent implements OnInit {
     private md:MarkdownService,
     private upSvc: ItemService,
     private push:pushService,
+    private router: Router,
     ) {
     this.user = this.cookieService.get('username'); 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+    if(this.cookieService.get('guest') == "true"){
+      this.router.navigate(['guestpost']);
+    }
+  }
+
+ 
 
   // updates markup text
   updateOutput(mdText: string){
@@ -106,6 +116,8 @@ export class UploaderComponent implements OnInit {
    // }
   }
 
+ 
+
   onSubmit(){
     const file = this.selectedFiles;
 
@@ -128,12 +140,11 @@ export class UploaderComponent implements OnInit {
 
 
   additem(){
-
        this.item.time = this.date+'';
        this.item.adminposted = this.user;
        this.item.name =this.currentUpload.file.name;
        this.item.url =this.uploadfile; 
-
+       this.item.verified = "yes";
       console.log(this.currentUpload.file);
      
       this.itemService.addItem(this.item);
