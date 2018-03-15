@@ -10,6 +10,10 @@ import { firestore } from "nativescript-plugin-firebase";
 const firebase = require("nativescript-plugin-firebase/app");
 const firebaseWebApi = require("nativescript-plugin-firebase/app");
 
+import { PDFView } from 'nativescript-pdf-view';
+import { registerElement } from 'nativescript-angular';
+
+
 
 @Component({
     selector: "detail",
