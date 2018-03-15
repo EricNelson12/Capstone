@@ -11,6 +11,9 @@ li{
 	list-style: none;
 }
 
+body{
+    margin-bottom: 5em;
+}
 
 .collection{
 	padding-left: 4em;
@@ -22,9 +25,11 @@ li{
 	min-width: 60em;
     max-width: 80em;
     width: 60%;
+    height: auto;
     display: block;
     margin-left: auto;
-    margin-right: auto	
+    margin-right: auto;	
+    margin-bottom: 5em;
 }
 
 .fileimage{
@@ -33,6 +38,11 @@ li{
 	display: block;
     margin-left: auto;
     margin-right: auto
+}
+
+
+.item-verify{
+    background-color: #ED5454;
 }
 
 .fileimage2{
@@ -63,7 +73,6 @@ h6{
 }
 
 .buttons{
-	border: 3px solid #; 
 	float: right;
 	position: relative;
    	bottom: .5em;
@@ -119,4 +128,9 @@ textarea[type=text] {
     box-sizing: border-box;
     height: 4em;
     min-height: 4em;
+}
+
+
+.bottom{
+    height: 5em;
 }

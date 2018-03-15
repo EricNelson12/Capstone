@@ -20,6 +20,8 @@ export class LoginpageComponent implements OnInit {
 
   ngOnInit() {
         this.cookieService.put('loggedin', 'false');
+        this.cookieService.put('guest', 'false');
+
         console.log('the cookie is',this.cookieService.get('loggedin'));
   }
 
@@ -27,6 +29,12 @@ export class LoginpageComponent implements OnInit {
 
   }
 
+  username = "guest";
+  password = "guest";
+
+  guestclick(){
+    this.cookieService.put('guest', 'true');
+  }
 
   loginUser(e){
   	e.preventDefault();

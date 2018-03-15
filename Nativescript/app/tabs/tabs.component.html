@@ -2,91 +2,108 @@
 <GridLayout tkMainContent>
  <TabView #tabview tabBackgroundColor="#414141" selectedTabTextColor="rgb(182, 253, 1)" >
      
+	<StackLayout *tabItem="{title: 'News'}" class="flex">
+			<Button text="Refresh" (tap)="firestoreWhereDentists()" class="btn"></Button>  
+
         <!-- News Tab -->
-        <StackLayout *tabItem="{title: 'News'}" class="flex">
 
-			
-			<!-- <Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>  -->
-			<!-- Entire list --> 
-			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
-			<!-- individual item --> 
-				<ng-template let-item="item" class="entire-item" >
-					<StackLayout class="list-item">
-				<StackLayout>
-				<Label text="{{item.title}}" class="title" (tap) = "viewDetail(item.title)"></Label>
-				</StackLayout>
+		<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group" separatorColor="transparent">
 
-				<GridLayout *ngIf="item.datatype === 'Image'" class="item-image" >
-				<Image src="{{item.url}}" (tap) = "viewDetail(item.title)"></Image> 
-				</GridLayout> 
+			<ng-template let-item="item" class="entire-item">
 
 
-						<GridLayout *ngIf="item.datatype === 'Video'" class="item-image">
-						
-							<VideoPlayer 
-						      src="{{item.url}}"
-						      autoplay="false" 
-						      height="300"></VideoPlayer>
+			<StackLayout>
 
-						</GridLayout>
-						
-						<GridLayout *ngIf="item.datatype === 'PDF'" class="item-image">
-						<Label text="This will show a PDF" (tap) = "viewDetail(item.title)"></Label> 
-						<PDFView src="{{item.url}}" (load)="onLoad()"></PDFView>
+			<StackLayout class="list-item" *ngIf="item.verified == 'Yes' && item.articletype == 'News'" > 
 
+				<!--*ngIf="item.articletype == 'News'" -->
 
-						</GridLayout> 
-
-						<StackLayout class="timeposted">
-						<Label text="Date posted: {{item.time}}"></Label>
-						</StackLayout>
-
+					<StackLayout>
+						<Label text="{{item.title}}" class="title" textWrap="true" (tap) = "viewDetail(item.title)"></Label>
 					</StackLayout>
-				</ng-template>
-			</ListView>
-		</StackLayout>
+
+					<GridLayout *ngIf="item.datatype === 'Image'" class="item-image" >
+					<Image src="{{item.url}}" (tap) = "viewDetail(item.title)"></Image> 
+					</GridLayout> 
+
+					<GridLayout *ngIf="item.datatype === 'Video'" class="item-image">
+					<VideoPlayer 
+					src="{{item.url}}"
+					autoplay="false" 
+					height="300"></VideoPlayer>
+					</GridLayout>
+
+					<GridLayout *ngIf="item.datatype === 'PDF'" class="item-image">
+						<!-- <Label text="This will show a PDF" (tap) = "viewDetail(item.title)"></Label> -->
+
+						<PDFView src="{{item.url}}" (load)="onLoad()"></PDFView>
+					</GridLayout> 
+
+					<StackLayout class="timeposted">
+					<Label text="posted: {{item.time}}"></Label>
+					</StackLayout>
+
+
+			</StackLayout>
+
+			</StackLayout>
+
+			</ng-template>
+		</ListView>
+
+
+
+	</StackLayout>
 
         <!-- Info Tab -->
-        <GridLayout *tabItem="{title: 'Info'}" class="flex">
-			<!-- <Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>  -->
-			<!-- Entire list --> 
-			<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group">
-			<!-- individual item --> 
-				<ng-template let-item="item" class="entire-item" >
-					<StackLayout class="list-item">
-				<StackLayout>
-				<Label text="{{item.title}}" class="title" (tap) = "viewDetail(item.title)"></Label>
-				</StackLayout>
-
-				<GridLayout *ngIf="item.datatype === 'Image'" class="item-image" >
-				<Image src="{{item.url}}" (tap) = "viewDetail(item.title)"></Image> 
-				</GridLayout> 
+    	<StackLayout *tabItem="{title: 'Info'}" class="flex">
+		<Button text="Refresh" (tap)="firestoreWhereDentists()" class="btn"></Button>  
 
 
-						<GridLayout *ngIf="item.datatype === 'Video'" class="item-image">
-						
-							<VideoPlayer 
-						      src="{{item.url}}"
-						      autoplay="false" 
-						      height="300"></VideoPlayer>
+		<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group" separatorColor="transparent">
 
-						</GridLayout>
-						
-						<GridLayout *ngIf="item.datatype === 'Pdf'" class="item-image">
-						<Label text="This will show a PDF" (tap) = "viewDetail(item.title)"></Label> 
+			<ng-template let-item="item" class="entire-item">
 
-						</GridLayout> 
 
-						<StackLayout class="timeposted">
-						<Label text="Date posted: {{item.time}}"></Label>
-						</StackLayout>
+			<StackLayout>
 
+			<StackLayout class="list-item" *ngIf="item.verified == 'Yes' && item.articletype == 'Info'"> 
+
+
+					<StackLayout>
+						<Label text="{{item.title}}" class="title" textWrap="true" (tap) = "viewDetail(item.title)"></Label>
 					</StackLayout>
-				</ng-template>
-			</ListView>
-		</GridLayout>
+
+					<GridLayout *ngIf="item.datatype === 'Image'" class="item-image" >
+					<Image src="{{item.url}}" (tap) = "viewDetail(item.title)"></Image> 
+					</GridLayout> 
+
+					<GridLayout *ngIf="item.datatype === 'Video'" class="item-image">
+					<VideoPlayer 
+					src="{{item.url}}"
+					autoplay="false" 
+					height="300"></VideoPlayer>
+					</GridLayout>
+
+					<GridLayout *ngIf="item.datatype === 'PDF'" class="item-image">
+						<Label text="This will show a PDF" (tap) = "viewDetail(item.title)"></Label> 
+					</GridLayout> 
+
+					<StackLayout class="timeposted">
+					<Label text="posted: {{item.time}}"></Label>
+					</StackLayout>
 
 
+			</StackLayout>
+
+			</StackLayout>
+
+			</ng-template>
+		</ListView>
+
+
+
+	</StackLayout>   
 
 
 
@@ -111,6 +128,3 @@
 
 
     
-
-
-

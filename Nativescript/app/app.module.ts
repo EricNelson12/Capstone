@@ -5,6 +5,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
 
+
 import { AppComponent } from "./app.component";
 import { routes, navigatableComponents } from "./app.routing";
 import { tabsComponent } from './tabs/tabs.component'

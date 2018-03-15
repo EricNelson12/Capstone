@@ -1,6 +1,4 @@
-div.center {
-  text-align: center;
-}
+
 
 body{
     background-color: #414141;
@@ -12,14 +10,60 @@ label{
 	color: #eee;
 }
 
-.title{
-	text-align: center;
+
+/* main container */
+.cont{
+	width: 60em;
+	margin: auto;
+	height: 60em;
+
+}
+/* guest link */
+.guest{
+	padding-top: 10em;
+	margin-left: 5em;
+	width: 25em;
+    float: left;
+	height: 50em;
+	margin-right: 3em;
+	border-right: 5px solid rgb(155, 252, 27);
 }
 
-.cont{
-	margin-top: 10em;
-	margin-bottom:20em;
+.button2{
+    height: 3em;
+    width: 10em; 
+    background-color: #eee;
+	color: grey;
+	margin-left: 6em;
 }
+
+
+/* user login form */
+.center {
+	padding-top: 10em;
+	width: 25em;
+    float: left;
+    height: 10em;
+
+}
+
+form{
+	align-content: center;
+	margin-left: 4em;
+}
+
+.title{
+	align-content: center;
+	margin-left: 8em;
+	margin-bottom: 4em;
+}
+
+.title2{
+	align-content: center;
+	margin-left: 6.5em;
+	margin-bottom: 4em;
+}
+
 
 .error{
 	color: red;
@@ -27,7 +71,6 @@ label{
 
 
 input{
-    width: 20%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -41,6 +84,14 @@ input{
 
 }
 
+label{
+	margin-left: 4em;
+}
+
+.email{
+	margin-left: 5em;
+
+}
 
 .img1{
 	float: left;
@@ -49,12 +100,40 @@ input{
 
 .button{
     height: 3em;
-    width: 6em; 
+    width: 10em; 
     background-color: #eee;
-    color: grey;
+	color: grey;
+	margin-left: 1.5em;
+}
+
+.button{
+    height: 3em;
+    width: 10em; 
+    background-color: #eee;
+	color: grey;
+	margin-left: 1.5em;
+	
+}
+
+.button3{
+    height: 3em;
+    width: 10em; 
+    background-color: #eee;
+	color: grey;
+	margin-left: 6em;
+	padding: 1em 2.35em;
+	text-decoration: none;
+	
 }
 
 .button:hover{
 	background-color: rgb(155, 252, 27);
 }
 
+.button2:hover{
+	background-color: rgb(155, 252, 27);
+}
+
+.button3:hover{
+	background-color: rgb(155, 252, 27);
+}
