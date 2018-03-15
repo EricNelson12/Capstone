@@ -142,7 +142,7 @@ export class GuestpostComponent implements OnInit {
       this.item.adminposted = this.user;
       this.item.name =this.currentUpload.file.name;
       this.item.url =this.uploadfile; 
-      this.item.verified = "no";
+      this.item.verified = "No";
      console.log(this.currentUpload.file);
     
      this.itemService.addItem(this.item);
