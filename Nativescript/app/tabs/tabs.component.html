@@ -14,8 +14,9 @@
 
 			<StackLayout>
 
-			<StackLayout class="list-item" *ngIf="item.articletype == 'News'"> 
+			<StackLayout class="list-item" *ngIf="item.verified == 'Yes' && item.articletype == 'News'" > 
 
+				<!--*ngIf="item.articletype == 'News'" -->
 
 					<StackLayout>
 						<Label text="{{item.title}}" class="title" textWrap="true" (tap) = "viewDetail(item.title)"></Label>
@@ -55,7 +56,7 @@
 	</StackLayout>
 
         <!-- Info Tab -->
-    	<StackLayout *tabItem="{title: 'News'}" class="flex">
+    	<StackLayout *tabItem="{title: 'Info'}" class="flex">
 		<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>  
 
 
@@ -66,7 +67,7 @@
 
 			<StackLayout>
 
-			<StackLayout class="list-item" *ngIf="item.articletype == 'Info'"> 
+			<StackLayout class="list-item" *ngIf="item.verified == 'Yes' && item.articletype == 'Info'"> 
 
 
 					<StackLayout>
