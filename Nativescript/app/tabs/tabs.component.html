@@ -3,7 +3,7 @@
  <TabView #tabview tabBackgroundColor="#414141" selectedTabTextColor="rgb(182, 253, 1)" >
      
 	<StackLayout *tabItem="{title: 'News'}" class="flex">
-		<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>  
+			<Button text="Refresh" (tap)="firestoreWhereDentists()" class="btn"></Button>  
 
         <!-- News Tab -->
 
@@ -57,7 +57,7 @@
 
         <!-- Info Tab -->
     	<StackLayout *tabItem="{title: 'Info'}" class="flex">
-		<Button text="{{query}}" (tap)="firestoreWhereDentists()" class="btn"></Button>  
+		<Button text="Refresh" (tap)="firestoreWhereDentists()" class="btn"></Button>  
 
 
 		<ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group" separatorColor="transparent">
