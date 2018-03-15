@@ -144,7 +144,7 @@ export class UploaderComponent implements OnInit {
        this.item.adminposted = this.user;
        this.item.name =this.currentUpload.file.name;
        this.item.url =this.uploadfile; 
-       this.item.verified = "yes";
+       this.item.verified = "Yes";
       console.log(this.currentUpload.file);
      
       this.itemService.addItem(this.item);
