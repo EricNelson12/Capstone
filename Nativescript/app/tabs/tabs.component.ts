@@ -27,7 +27,6 @@ import { firestore } from "nativescript-plugin-firebase";
 const firebase = require("nativescript-plugin-firebase/app");
 const firebaseFCM = require("nativescript-plugin-firebase");
 const firebaseWebApi = require("nativescript-plugin-firebase/app");
-const MapBox = require("nativescript-mapbox");
 
 //items
 
@@ -111,6 +110,8 @@ private watchId: number;
 
 //Map events
 onMapReady(event) {
+  try {    
+  
     console.log('Map Ready');
 
     this.mapView = event.object;
@@ -129,14 +130,21 @@ onMapReady(event) {
     
     
      // check if geolocation is not enabled
+     if(!Geolocation.isEnabled){
         Geolocation.enableLocationRequest(); // request for the user to enable it
+     }
       
     this.mapView.addMarker(marker);
     this.mapView.addMarker(marker2);
+  } catch (error) {
+    console.log(error.toString())
+  }
 
 
 }
 private getDeviceLocation(): Promise<any> {
+  try {   
+  
   return new Promise((resolve, reject) => {
       Geolocation.enableLocationRequest().then(() => {
           Geolocation.getCurrentLocation({timeout: 10000}).then(location => {
@@ -146,10 +154,14 @@ private getDeviceLocation(): Promise<any> {
           });
       });
   });
+    } catch (error) {
+    console.log(error.toString())
+    }
 }
 
+
 public updateLocation() {
-  
+  try{
   this.getDeviceLocation().then(result => {
       this.latitude = result.latitude;
       this.longitude = result.longitude;
@@ -157,9 +169,13 @@ public updateLocation() {
   }, error => {
       console.error(error);
   });
+} catch (error) {
+  console.log(error.toString())
+}
 }
 
 public startWatchingLocation() {
+  
   Geolocation.enableLocationRequest(); // request for the user to enable it
   this.watchId = Geolocation.watchLocation(location => {
       if(location) {

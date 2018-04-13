@@ -1,7 +1,6 @@
 import { platformNativeScriptDynamic } from "nativescript-angular/platform";
 import { AppModule } from "./app.module";
 import { registerElement } from "nativescript-angular/element-registry";
-registerElement("Mapbox", () => require("nativescript-mapbox").MapboxView);
 const firebase = require("nativescript-plugin-firebase");
 
 platformNativeScriptDynamic().bootstrapModule(AppModule);
