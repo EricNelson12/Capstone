@@ -1,4 +1,4 @@
-export interface Item{
+export interface Item2{
 	id?:string;
 	title?:string;
 	description?:string;
@@ -8,7 +8,7 @@ export interface Item{
 	datatype?:string;
 	url?: string;
 	name?: string;
-	verified?: string;
+
 }
 
 

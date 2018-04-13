@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { LogoutComponent } from './logout/logout.component';
 
+import { GuestpostComponent } from './guestpost/guestpost.component';
 
 
 import {PushmessageComponent} from './pushmessage/pushmessage.component';
@@ -45,15 +46,12 @@ import {HttpClientModule} from '@angular/common/http';
 import { DownloadpageComponent } from './downloadpage/downloadpage.component';
 import { pushService } from './services/push.service';
 
-
-
 export const firebaseConfig = {
       apiKey: "AIzaSyC6empcDciB_guvtZiNwFk7R-lTVThpPeQ",
       authDomain: "perfitdental-7951d.firebaseapp.com",
       databaseURL: "https://perfitdental-7951d.firebaseio.com",
       projectId: "perfitdental-7951d",
-      //storageBucket: "perfitdental-7951d.appspot.com",
-      storageBucket: "capstone-b5c94.appspot.com",
+      storageBucket: "perfitdental-7951d.appspot.com",
       messagingSenderId: "539232777666"
 }
 
@@ -93,6 +91,10 @@ const appRoutes:Routes = [
     component: DownloadpageComponent
  
    },
+   {
+    path: 'guestpost',
+    component: GuestpostComponent
+   },
   {
     path: 'logout',
     component: LogoutComponent
@@ -110,7 +112,7 @@ const appRoutes:Routes = [
     UploaderComponent,
     LogoutComponent,
     MainuploadComponent,    
-    PushmessageComponent, DownloadpageComponent,    
+    PushmessageComponent, DownloadpageComponent, GuestpostComponent,    
 
   ],
   imports: [

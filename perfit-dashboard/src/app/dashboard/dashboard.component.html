@@ -3,82 +3,102 @@
 <body>
 
   <div *ngIf="items?.length >0; else nItems">
-  	<ul *ngFor="let item of items" class="collection">
-  		<li class="collection-item">
-			
-			<h1 class="item-title">{{ item.title }}</h1> <hr>
-			  
-			  <div *ngIf="item.datatype == 'Image'; ">
-				<img class="fileimage" src="{{ item.url	}}"> 
-			  </div>
-			  
-			  <div *ngIf="item.datatype == 'Video'; ">
-				<video class="fileimage2" width="500" height="500" controls>
-	 			 <source src="{{ item.url }}" type="video/mp4">
-				</video>			  
-			  </div>
+    <ul *ngFor="let item of items" class="collection">
+      <li class="collection-item">
+      
+      <h1 *ngIf="item.verified ==='No';"class="item-verify">Verify Post</h1>  
 
-			  <div class="pdf" *ngIf="item.datatype == 'PDF'; ">
-			  	<a class="pdf" href="{{ item.url }}">{{ item.name }}</a>
-			  </div>
-		
+      <h1 class="item-title">{{ item.title }}</h1> <hr>
+        
+        <div *ngIf="item.datatype == 'Image'; ">
+        <img class="fileimage" src="{{ item.url }}"> 
+        </div>
+        
+        <div *ngIf="item.datatype == 'Video'; ">
+        <video class="fileimage2" width="500" height="500" controls>
+         <source src="{{ item.url }}" type="video/mp4">
+        </video>        
+        </div>
 
+        <div class="pdf" *ngIf="item.datatype == 'PDF'; ">
+          <a class="pdf" href="{{ item.url }}">{{ item.name }}</a>
+                    <p>Click on link to open file</p>
 
-			<br><h3><div class="description"> {{ updateOutput(item.description) }}</div></h3>
-			<br><h3><div class="description" [innerHtml]= "convertedText"> </div></h3>
-			<div class="info">
-				<!--<br> <b>Datatype: </b> {{ item.datatype }}-->
-				<br> <b>File name: </b> {{ item.name }}
-				<br> <b>Postedby: </b> {{ item.adminposted }}
-				<br> <b>Permissions: </b> {{ item.permissions }}
-				<br> <b>Posted on: </b> {{ item.time }}
-				<br> <b>Post id: </b> {{ item.id }}
-				<div class="buttons">
-					<button  class="button" (click)="editItem($event, item)" >Edit</button>
-					<button  class="button"	(click)="clearState()"	>Hide</button>
-				</div>
-			</div>
-			<div *ngIf="editState && itemToEdit.id == item.id" >
-				<form (ngSubmit)="updateItem(item)"	>
-					<div class="editthis">
-				        <b>Title:</b> 
-				        <input type="text" placeholder="edit title" [(ngModel)]="item.title" name="title"><br>			  
-				    </div> 	
-				    <div class="editthis">
-				      <b>Descripton:</b>
-				      	<textarea class="description" type="text" placeholder="Add Description" [(ngModel)]="item.description" name="description"></textarea>		
-				    </div>  
-				    <div class="editthis">
-       					<b>Permissions:</b>
-					       <select type="text" placeholder="Add Datatype" [(ngModel)]="item.permissions" name="permissions">
-       						<option selected="selected" >Everyone</option>
-      						<option>Dentists/Doctors only</option>
-       					   </select>
-       				</div>
+        </div>
+
+        <div class="pdf" *ngIf="item.datatype == 'STL'; ">
+          <a class="pdf" href="{{ item.url }}">{{ item.name }}</a>
+          <p>Click on link to download file</p>
+        </div>
+    
 
 
+      <br><h3><div class="description"> {{ updateOutput(item.description) }}</div></h3>
+      <br><h3><div class="description" [innerHtml]= "convertedText"> </div></h3>
+      <div class="info">
+        <!--<br> <b>Datatype: </b> {{ item.datatype }}-->
+        <br> <b>File name: </b> {{ item.name }}
+        <br> <b>Postedby: </b> {{ item.adminposted }}
+        <br> <b>Permissions: </b> {{ item.permissions }}
+        <br> <b>Article Type: </b> {{ item.articletype }}
+        <br> <b>Posted on: </b> {{ item.time }}
+        <br> <b>Post id: </b> {{ item.id }}
+        <div class="buttons">          
+          <button  class="button" (click)="editItem($event, item)" >Edit</button>
+          <button  class="button" (click)="clearState()"  >Hide</button>
 
+        </div>
+      </div>
+      <div *ngIf="editState && itemToEdit.id == item.id" >
+        <form (ngSubmit)="updateItem(item)" >
+          <div class="editthis">
+                <b>Title:</b> 
+                <input type="text" placeholder="edit title" [(ngModel)]="item.title" name="title"><br>        
+            </div>  
+            <div class="editthis">
+              <b>Descripton:</b>
+                <textarea class="description" type="text" placeholder="Add Description" [(ngModel)]="item.description" name="description"></textarea>   
+            </div>  
+            <div class="editthis">
+                <b>Permissions:</b>
+                 <select type="text" placeholder="Add Datatype" [(ngModel)]="item.permissions" name="permissions">
+                  <option selected="selected" >Everyone</option>
+                  <option>Dentists/Doctors only</option>
+                   </select>
+              </div>
+              <div class="editthis">
+                  <b>Article Type:</b>
+                   <select type="text" placeholder="Add Datatype" [(ngModel)]="item.verified" name="permissions">
+                    <option selected="selected" >News</option>
+                    <option>Info</option>
+                     </select>
+                </div>
+              <div class="editthis">
+                  <b>Verify</b>
+                   <select type="text" placeholder="Add Datatype" [(ngModel)]="item.verified" name="permissions">
+                    <option selected="selected" >Yes</option>
+                    <option>No</option>
+                     </select>
+                </div>
+              
+                <br>
+                <div class="buttons">
+                <button type="submit" value="Update Item" class="">Update Post</button>
+                <button (click)="deleteItem($event,item)"  class="">Delete Post</button>
+                </div> 
+                <!-- -->
+                 <!-- -->
+        </form>
+      </div>
 
-				      	<br>
-			        	<div class="buttons">
-						<button type="submit" value="Update Item" class="">Update Post</button>
-			        	<button (click)="deleteItem($event,item)"  class="">Delete Post</button>
+    </li>
 
-			        	</div>
-			        	
-				</form>
-			</div>
-
-		</li>
-
-  	</ul>
+    </ul>
 
   </div>
+  <div class="bottom">
+
+  </div>
+
 </body>
-
-<ng-template #noItems>
-	<hr>
-	<h5>There are no items to list</h5>
-
-</ng-template>
 

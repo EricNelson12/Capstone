@@ -1,0 +1,121 @@
+<div class="outer-header">
+    <div class="title-header ">
+  
+  <img class="img1  stnd default-logo dark-version" alt="Perfit Dental Solutions" src="./assets/PerFit-Small.png" style="height: 66px;">
+  
+          <div class="menu">
+              <ul>
+                 <li><a class="nav-link link" href="logout">Logout <span class="sr-only">(current)</span></a></li>
+              </ul>
+          </div>
+   </div>
+  <p class="usermsg"> Welcome, <br> {{ Guest }} </p>
+  </div>
+
+
+
+<body>
+    <div class="container">
+      <div class="">
+        <h1 class=""> Create an article to be verified by Perfit Dental</h1> 
+        <hr>
+        <form (ngSubmit) ="onSubmit()" class="">
+    
+          <div class="">
+            <label>Title</label>
+            <input type="text" placeholder="Add title" [(ngModel)]="item.title" name="title">
+          </div>
+          
+    
+          <div class="">
+            <label>description</label>
+            <label>  </label>
+            <textarea class="description" type="text" name="description" placeholder="Add description" (keyup)="updateOutput($event.target.value)" [(ngModel)]="item.description" ></textarea>
+          </div>
+    
+          <div class="">
+           <label>Permissions</label>
+           <select type="text" placeholder="Add Datatype" [(ngModel)]="item.permissions" name="permissions">
+           <option selected="selected" >Everyone</option>
+           <option>Dentists/Doctors only</option>
+           </select>
+           </div>
+    
+           <div class="">
+           <label>Datatype</label>
+           <select type="text" placeholder="Add Datatype" [(ngModel)]="item.datatype" name="permissions">
+           <option selected="selected" >Image</option>
+           <option>Video</option>
+           <option>PDF</option>
+           <option>STL</option>
+           </select>
+           </div>
+    
+    
+           <div class="">
+           <label>Article Type</label>
+           <select type="text" placeholder="Add Datatype" [(ngModel)]="item.articletype" name="permissions">
+           <option selected="selected" >News</option>
+           <option>Info</option>
+           </select>
+           </div>
+    
+    
+           <!-- file uploader -->
+            <div class="container">
+            <div class="box1" *ngIf="currentUpload">
+              <progress class="progress" min=1 max=100 value="{{ currentUpload?.progress }}"></progress>
+              Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+            </div>
+    
+            <div class="box">
+              
+              <br>
+              <label>File Upload</label><br>
+              <label>
+                <input type="file" class="button" (change)="detectFiles($event)">
+              </label>
+              
+    
+              
+    <!--
+               <button class="button is-primary"
+                  type="button"
+                  [disabled]="!selectedFiles"
+                  (click)="uploadSingle()">
+                  Upload Single
+               </button>
+    
+               <label>Multi File Upload</label><br><br>
+               <label>
+               <input type="file" class="button" (change)="detectFiles($event)" multiple>
+               </label>
+    -->
+              <hr>
+             
+    
+             <!-- <label>Post preview</label>
+    
+                    <div [innerHtml]= "convertedText" ></div>
+              -->
+    
+            </div>
+            </div>
+           <!-- -->
+            
+    
+    
+          <input type="submit" class="button">
+          <div id="message"></div>
+          <div id="message2"></div>
+    
+          
+    
+        </form>
+    
+      </div>
+    </div>
+    <br><br>
+    </body>
+    
+  

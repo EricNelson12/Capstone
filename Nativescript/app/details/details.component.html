@@ -13,7 +13,7 @@ color: rgb(182, 253, 1);
 
 
 
-<GridLayout tkMainContent
+<GridLayout rows="*"
 style=" 
 background-color: #414141;
 height: 100%;
@@ -21,12 +21,12 @@ height: 100%;
 >
 
 
-<ListView [items]="myItems$ | async" height="600" *ngIf="myItems$" class="list-group">
+    <ListView [items]="myItems$ | async" height="800" *ngIf="myItems$" class="list-group" separatorColor="transparent">
     <ng-template let-item="item" class="items">
         <StackLayout class="list-item"> 
 
             <StackLayout>    
-                <Label text="{{item.title}}" class="title"></Label>
+                <Label text="{{item.title}}" class="title" textWrap="true"></Label>
             </StackLayout>
             
             <GridLayout *ngIf="item.datatype === 'Image'" class="item-image" >
@@ -46,12 +46,13 @@ height: 100%;
             </GridLayout> 
 
             <StackLayout>    
-                <Label text="{{item.description}}" class="title"
+                <Label text="{{item.description}}" class="title" textWrap="true"
+                
                 style=" 
-                font-size: 18;
+                font-size: 16;
                 height: 100%;
                 width: 80%;
-                ">
+                "     >
                 ></Label>
 
                  <Label text="{{item.time}}" class="title"

@@ -9,13 +9,24 @@
   </div>
   
 
+
   <div class="cont">
+    <!-- Guest Link -->
+
+    <div class="guest">
+        <label class="title">Guest Login</label><br/>
+            <a href="guestpost" (click)="guestclick()" class="button3">Guest Login</a> 
+<!--        <input type="submit" class="button2" value="Guest Login"> -->
+
+      </div>
+
+    <!-- Login Form -->
     <div class="center">
-        <label class="title">Admin Dashboard</label><br/>
+        <label class="title2">Admin Dashboard</label><br/>
       <form (submit)="loginUser($event)">
         
         <div class="input">
-          <label>Email</label><br/>
+          <label class="email">Email</label><br/>
           <input type="text" placeholder="email"><br/><br/>
         </div>
         <div class="input">

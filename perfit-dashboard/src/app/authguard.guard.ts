@@ -15,7 +15,9 @@ export class AuthguardGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if(this.cookieService.get('loggedin') == "true"){
-    	return true;
+      return true;
+     } if(this.cookieService.get('guest') == "true"){
+        return true;
     }else{
     	return false;
     }
