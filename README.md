@@ -11,3 +11,5 @@ ng build --prod --base-href "https://perfitdental-7951d.firebaseapp.com/"
 
 Live at:
 https://perfitdental-7951d.firebaseapp.com/
+
+More common commands: https://docs.nativescript.org/docs-cli/project/configuration/install
