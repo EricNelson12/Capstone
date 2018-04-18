@@ -8,6 +8,8 @@ export interface Item2{
 	datatype?:string;
 	url?: string;
 	name?: string;
+	verified?: string;
+	articletype?:string;
 
 }
 

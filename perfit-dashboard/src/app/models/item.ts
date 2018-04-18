@@ -9,6 +9,7 @@ export interface Item{
 	url?: string;
 	name?: string;
 	verified?: string;
+	articletype?:string;
 }
 
 

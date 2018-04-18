@@ -21,6 +21,7 @@ export class GuestpostComponent implements OnInit {
   basePath = 'uploads';
   uploadfile = '';
 
+  Guest:string;
   user:string;
   date = new Date();
   convertedText: string;
